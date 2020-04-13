@@ -16,13 +16,13 @@
 #
 default: &default
   adapter: postgresql
-  host: <%= ENV["RDS_End_Point"] %>
-  port: 5432
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
   encoding: utf8
   sslmode: allow
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV["RDS_MASTER_NAME"] %>
-  password: <%= ENV["RDS_PASSWORD"] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
 
 development:
   <<: *default
@@ -83,4 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV["DB_NAME"] %>_<%= Rails.env %>
+  database: <%= ENV['RDS_DB_NAME'] %>
