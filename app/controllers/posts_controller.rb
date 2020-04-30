@@ -30,6 +30,6 @@ class PostsController < ApiController
   end
 
   def post_params
-    params.permit(:title, :description, :user_id)
+    params.permit(:title, :description, :filter_id, :user_id, :price, :tag_list)
   end
 end

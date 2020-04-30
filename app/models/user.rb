@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :password,
             length: { minimum: 6 },
             if: -> { new_record? || !password.nil? }
+
+  enum user_type: %i(consumer maker admin)
 end

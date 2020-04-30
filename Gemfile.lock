@@ -68,6 +68,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.1, >= 2.1.8)
+    acts-as-taggable-on (6.5.0)
+      activerecord (>= 5.0, < 6.1)
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     bcrypt (3.1.13)
@@ -224,6 +226,7 @@ PLATFORMS
 DEPENDENCIES
   active_admin_flat_skin
   activeadmin
+  acts-as-taggable-on (~> 6.0)
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
