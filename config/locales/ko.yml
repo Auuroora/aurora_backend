@@ -1,0 +1,31 @@
+ko:
+  attributes:
+    id: ID
+    user: 사용자
+    name: 이름
+    created_at: 생성시간
+    updated_at: 수정시간
+  activerecord:
+    attributes:
+      admin_user:
+        email: 이메일
+        created_at: 생성일자
+      user:
+        username: 사용자
+        email: 이메일
+        password: 비밀번호
+        password_confirmation: 비밀번호 확인
+      post:
+        title: 제목
+        description: 상세설명
+    models:
+      aurora: 오로라
+      dashboard: 대시보드
+      user: 사용자
+      admin_user: 관리자
+      post: 게시글
+  time:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%Y-%m-%d"
+      long: "%Y-%m-%d %H:%M"

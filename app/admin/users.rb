@@ -1,11 +1,24 @@
 ActiveAdmin.register User do
+  permit_params :username, :email, :password, :password_confirmation
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  permit_params :username, :email, :password_digest
+  scope -> { '전체' }, :all
 
+  filter :email_cont, label: "이메일 필터"
 
+  show do
+    attributes_table do
+      row :username
+      row :email
+    end
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :username
+      f.input :email
+      f.input :password
+      f.input :password_confirmation
+    end
+    f.actions
+  end
 end

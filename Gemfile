@@ -36,6 +36,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Code encapsulation
 gem 'figaro'
 
+# Active admin
+gem 'active_admin_flat_skin'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
