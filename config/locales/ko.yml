@@ -15,17 +15,31 @@ ko:
         email: 이메일
         password: 비밀번호
         password_confirmation: 비밀번호 확인
+        user_type: 분류
       post:
         title: 제목
         description: 상세설명
+        price: 필터 가격
+        filter_id: 필터
+      filter:
+        filter_data_path: 필터 URL
+        filter_name: 필터 이름
+        user_id: 제작자
     models:
       aurora: 오로라
       dashboard: 대시보드
       user: 사용자
       admin_user: 관리자
       post: 게시글
+      filter: 필터
   time:
     formats:
       default: "%Y-%m-%d"
       short: "%Y-%m-%d"
       long: "%Y-%m-%d %H:%M"
+  enum:
+    user:
+      user_type:
+        consumer: 소비자
+        maker: 제작자
+        admin: 관리자
