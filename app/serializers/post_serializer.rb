@@ -1,8 +1,9 @@
 class PostSerializer < ActiveModel::Serializer
+  include ActionView::Helpers::NumberHelper
   attributes %i(post_info user_info filter_info tag_info)
 
   def post_info
-    { id: object.id, title: object.title, description: object.description, price: object.price, created_at: created_date(object) }
+    { id: object.id, title: object.title, description: object.description, price: money(object), created_at: created_date(object) }
   end
 
   def filter_info
@@ -28,4 +29,7 @@ class PostSerializer < ActiveModel::Serializer
     "#{target.created_at.strftime('%Y-%m-%d %H:%M')}" rescue ''
   end
 
+  def money target
+    "#{number_with_delimiter(target.price.to_i)}원" rescue ''
+  end
 end
