@@ -30,6 +30,7 @@ gem 'activeadmin'
 
 # Use Json Web Token (JWT) for token based authentication
 gem 'jwt'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -41,6 +42,9 @@ gem 'active_admin_flat_skin'
 
 # Hashtag
 gem 'acts-as-taggable-on', '~> 6.0'
+
+# JSON parameter serialization
+gem 'active_model_serializers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -3,20 +3,20 @@ class PostsController < ApiController
   before_action :load_post, except: %i(index create)
 
   def index
-    render json: Post.all, status: :ok
+    render json: Post.all, scope: { params: create_params }
   end
 
   def show
-    render json: @post, status: :ok
+    render json: @post, scope: { params: create_params }
   end
 
   def create
-    @post = Post.new post_params
-    render json: (@post.save) ? @post : @post.errors.full_messages
+    @post = Post.create post_params
+    render json: @post, scope: { params: nil }
   end
 
   def update
-    render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity unless @post.update post_params
+    render json: { errors: @post.errors.full_messages }, scope: { params: nil } unless @post.update post_params
   end
 
   def destroy
@@ -31,5 +31,10 @@ class PostsController < ApiController
 
   def post_params
     params.permit(:title, :description, :filter_id, :user_id, :price, :tag_list)
+  end
+
+  def create_params
+    params = JSON.parse(request.body.read) rescue {}
+    ActionController::Parameters.new(params)
   end
 end
