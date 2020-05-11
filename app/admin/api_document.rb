@@ -196,10 +196,10 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   status_tag 'JSON'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('filter_name<br/>filter_data_path<br/>user_id <b>(NULL false)</b>')
+                  simple_format('filter_name<br/>filter_data_path')
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('{"filter" : <br/>&nbsp;&nbsp;{"filter_name" : "아름다운 필터",<br/>&nbsp;&nbsp;"user_id": "1",<br/>&nbsp;&nbsp;"filter_data_path" : "S3_storage_path"}<br/>}')
+                  simple_format('{"filter" : <br/>&nbsp;&nbsp;{"filter_name" : "아름다운 필터",<br/>&nbsp;&nbsp;"filter_data_path" : "S3_storage_path"}<br/>}')
                 end
               end
             end
@@ -212,13 +212,13 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   span "/filters"
                 end
                 column max_width: "150px", min_width: "100px" do
-                  span '-'
+                  status_tag 'JSON'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  span '-'
+                  simple_format('user_info')
                 end
-                column max_width: "200px", min_width: "100px" do
-                  span "/filters"
+                column max_width: "300px", min_width: "300px" do
+                  simple_format('base_url: /filters<br/>optional_parameter: {"user_info" : "true"}')
                 end
               end
             end
@@ -231,13 +231,51 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   span "/filters/:id"
                 end
                 column max_width: "150px", min_width: "100px" do
+                  status_tag 'JSON'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('user_info')
+                end
+                column max_width: "300px", min_width: "300px" do
+                  simple_format('base_url: /filters/1<br/>optional_parameter: {"user_info" : "true"}')
+                end
+              end
+            end
+            row "필터 삭제" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'DELETE', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/Filters/:id"
+                end
+                column max_width: "150px", min_width: "100px" do
                   span '-'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  span '-'
+                  simple_format('-')
                 end
                 column max_width: "200px", min_width: "100px" do
                   span "/filters/1"
+                end
+              end
+            end
+            row "필터 수정" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'PUT', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/filters/:id"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag "JSON"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('filter_name<br/>filter_data_path')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('{"filter" : <br/>&nbsp;&nbsp;{"filter_name" : "아름다운 필터 수정",<br/>&nbsp;&nbsp;"filter_data_path" : "S3_storage_path_edit"}<br/>}')
                 end
               end
             end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :posts
+  has_many :filters
   has_secure_password
   acts_as_follower
   acts_as_followable
