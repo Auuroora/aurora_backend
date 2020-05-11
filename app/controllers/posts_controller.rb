@@ -3,15 +3,15 @@ class PostsController < ApiController
   before_action :load_post, except: %i(index create)
 
   def index
-    render json: Post.all, scope: { params: create_params }
+    render json: Post.all, scope: { params: create_params, current_user: @current_user }
   end
 
   def show
-    render json: @post, scope: { params: create_params }
+    render json: @post, scope: { params: create_params, current_user: @current_user }
   end
 
   def create
-    @post = Post.create post_params
+    @post = @current_user.posts.create(post_params)
     render json: @post, scope: { params: nil }
   end
 
@@ -30,7 +30,7 @@ class PostsController < ApiController
   end
 
   def post_params
-    params.permit(:title, :description, :filter_id, :user_id, :price, :tag_list)
+    params.permit(:title, :description, :filter_id, :price, :tag_list)
   end
 
   def create_params

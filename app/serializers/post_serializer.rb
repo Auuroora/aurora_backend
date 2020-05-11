@@ -1,6 +1,6 @@
 class PostSerializer < ActiveModel::Serializer
   include ActionView::Helpers::NumberHelper
-  attributes %i(post_info user_info filter_info tag_info)
+  attributes %i(post_info user_info filter_info tag_info like_info)
 
   def post_info
     { id: object.id, title: object.title, description: object.description, price: money(object), created_at: created_date(object) }
@@ -23,7 +23,11 @@ class PostSerializer < ActiveModel::Serializer
     { tag_list: object.tag_list } if tag_scope rescue nil
   end
 
-  def like_info;end
+  def like_info
+    like_scope = ActiveModel::Type::Boolean.new.cast(scope.dig(:params, :like_info))
+    current_user = scope.dig(:current_user)
+    { liked_count: object.likers_count, liked: object.liked_by?(current_user) } if like_scope rescue nil
+  end
 
   def created_date target
     "#{target.created_at.strftime('%Y-%m-%d %H:%M')}" rescue ''

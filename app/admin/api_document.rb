@@ -56,10 +56,10 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   status_tag 'JSON'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('user_info<br/>filter_info<br/>tag_info')
+                  simple_format('user_info<br/>filter_info<br/>tag_info<br/>like_info')
                 end
                 column max_width: "300px", min_width: "300px" do
-                  simple_format('base_url: /posts/1<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true"}')
+                  simple_format('base_url: /posts/1<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true"}')
                 end
               end
             end
@@ -75,10 +75,10 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   status_tag 'Query String'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('title<br/>description<br/>user_id<br/>filter_id<br/>price<br/>tag_list<br/>')
+                  simple_format('title<br/>description<br/>filter_id<br/>price<br/>tag_list<br/>')
                 end
                 column max_width: "200px", min_width: "100px" do
-                  span "posts?title=겨울철 필터&description=따뜻한 느낌의 필터를 판매합니다&user_id=1&price=1000&tag_list=겨울, 따뜻한, 감미로운"
+                  span "posts?title=겨울철 필터&description=따뜻한 느낌의 필터를 판매합니다&price=1000&tag_list=겨울, 따뜻한, 감미로운"
                 end
               end
             end
@@ -113,10 +113,29 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   status_tag 'Query String'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('title<br/>description<br/>user_id<br/>price<br/>tag_list<br/>')
+                  simple_format('title<br/>description<br/>price<br/>tag_list<br/>')
                 end
                 column max_width: "200px", min_width: "100px" do
                   span "/posts/1?title=여름철 필터"
+                end
+              end
+            end
+            row "게시글 좋아요/좋아요 취소" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'POST', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/likes"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'JSON'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('liker ("user", 소문자)<br/>likeable ("post", 소문자)<br/>likeable_id(post_id)<br/>')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('base_url: /likes<br/>optional_parameter: {"liker" : "user", "likeable" : "post", "likeable_id" : "5"}')
                 end
               end
             end
