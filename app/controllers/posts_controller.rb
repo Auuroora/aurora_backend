@@ -16,7 +16,8 @@ class PostsController < ApiController
   end
 
   def update
-    render json: { errors: @post.errors.full_messages }, scope: { params: nil } unless @post.update post_params
+    @post&.update post_params
+    render json: @post, scope: { params: nil }
   end
 
   def destroy
@@ -30,11 +31,6 @@ class PostsController < ApiController
   end
 
   def post_params
-    params.permit(:title, :description, :filter_id, :price, :tag_list)
-  end
-
-  def create_params
-    params = JSON.parse(request.body.read) rescue {}
-    ActionController::Parameters.new(params)
+    create_params.require(:post).permit(:title, :description, :filter_id, :price, :tag_list)
   end
 end

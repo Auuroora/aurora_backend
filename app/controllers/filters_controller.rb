@@ -6,17 +6,17 @@ class FiltersController < ApiController
     render json: Filter.all, scope: { params: create_params }
   end
 
+  def show
+    render json: @filter, scope: { params: create_params }
+  end
+
   def create
     filter = @current_user.filters.create(filter_params)
     render json: filter, scope: { params: nil }
   end
 
-  def show
-    render json: @filter, scope: { params: create_params }
-  end
-
   def update
-    @filter.update filter_params
+    @filter&.update filter_params
     render json: @filter, scope: { params: nil }
   end
 
@@ -32,10 +32,5 @@ class FiltersController < ApiController
 
   def filter_params
     create_params.require(:filter).permit(:filter_data_path, :filter_name)
-  end
-
-  def create_params
-    params = JSON.parse(request.body.read) rescue {}
-    ActionController::Parameters.new(params)
   end
 end

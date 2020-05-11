@@ -72,13 +72,13 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   span "/posts"
                 end
                 column max_width: "150px", min_width: "100px" do
-                  status_tag 'Query String'
+                  status_tag 'JSON'
                 end
                 column max_width: "200px", min_width: "100px" do
                   simple_format('title<br/>description<br/>filter_id<br/>price<br/>tag_list<br/>')
                 end
                 column max_width: "200px", min_width: "100px" do
-                  span "posts?title=겨울철 필터&description=따뜻한 느낌의 필터를 판매합니다&price=1000&tag_list=겨울, 따뜻한, 감미로운"
+                  simple_format('{"post" : <br/>&nbsp;&nbsp;{"title" : "겨울철 필터",<br/>&nbsp;&nbsp;"description" : "따뜻한 필터를 판매",<br/>&nbsp;&nbsp;"filter_id" : "4",<br/>&nbsp;&nbsp;"price" : "1000",<br/>&nbsp;&nbsp;"tag_list" : "따뜻한, 산뜻한, 값싼"}<br/>}')
                 end
               end
             end
@@ -110,13 +110,13 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   span "/posts/:id"
                 end
                 column max_width: "150px", min_width: "100px" do
-                  status_tag 'Query String'
+                  status_tag 'JSON'
                 end
                 column max_width: "200px", min_width: "100px" do
                   simple_format('title<br/>description<br/>price<br/>tag_list<br/>')
                 end
                 column max_width: "200px", min_width: "100px" do
-                  span "/posts/1?title=여름철 필터"
+                  simple_format('{"post" : <br/>&nbsp;&nbsp;{"title" : "겨울철 필터 수정",<br/>&nbsp;&nbsp;"description" : "따뜻한 필터를 판매",<br/>&nbsp;&nbsp;"price" : "1000",<br/>&nbsp;&nbsp;"tag_list" : "따뜻한, 산뜻한, 값싼"}<br/>}')
                 end
               end
             end
@@ -275,7 +275,7 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   simple_format('filter_name<br/>filter_data_path')
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('{"filter" : <br/>&nbsp;&nbsp;{"filter_name" : "아름다운 필터 수정",<br/>&nbsp;&nbsp;"filter_data_path" : "S3_storage_path_edit"}<br/>}')
+                  simple_format('{"filter" : <br/>&nbsp;&nbsp;{"filter_name" : "아름다운 필터 수정",<br/>&nbsp;&nbsp;"filter_data_path" : "S3_storage_path"}<br/>}')
                 end
               end
             end

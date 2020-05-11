@@ -13,6 +13,15 @@ class ApiController < ActionController::API
     end
   end
 
+  def create_params
+    begin
+      @params = JSON.parse(request.body.read)
+      ActionController::Parameters.new(@params)
+    rescue
+      {}
+    end
+  end
+
   private
 
   def http_token
