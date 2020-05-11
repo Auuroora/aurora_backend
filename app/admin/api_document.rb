@@ -145,19 +145,65 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
       end
 
       tab "사용자" do
-        panel "Post API URL" do
-          ul "게시글 생성" do
-            li "게시글 생성"
-            li status_tag 'active', class: 'important', id: 'status_123', label: 'on'
-          end
-          ul "게시글 삭제" do
-            li "게시글 생성"
-          end
-          ul "게시글 수정" do
-            li "게시글 생성"
-          end
-          ul "게시글 생성" do
-            li "게시글 생성"
+        panel "User" do
+          attributes_table_for "User" do
+            row "Role" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  span "Method"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "URL"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "Parameter Type"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Params"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Example"
+                end
+              end
+            end
+            row "회원가입" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Post', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/users"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag "Form Data"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('email<br/>username<br/>password<br/>password_confirmation<br/>')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('email=test@test<br/>username=tester<br/>password=123qwe<br/>password_confirmation=123qwe')
+                end
+              end
+            end
+            row "로그인" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Post', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/auth/login"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag "JSON"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('email<br/>password')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('{"email" : "test@test", "password" : "123qwe"}')
+                end
+              end
+            end
           end
         end
       end
