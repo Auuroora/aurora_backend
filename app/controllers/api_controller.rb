@@ -15,7 +15,7 @@ class ApiController < ActionController::API
 
   def create_params
     begin
-      @params = JSON.parse(request.body.read)
+      @params = request.params
       ActionController::Parameters.new(@params)
     rescue
       {}
