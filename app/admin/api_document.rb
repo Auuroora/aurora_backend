@@ -40,7 +40,7 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   simple_format('user_info<br/>filter_info<br/>tag_info')
                 end
                 column max_width: "300px", min_width: "300px" do
-                  simple_format('base_url: /posts<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true"}')
+                  simple_format('base_url: /posts<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true"}')
                 end
               end
             end
@@ -201,6 +201,44 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                 end
                 column max_width: "200px", min_width: "100px" do
                   simple_format('{"email" : "test@test", "password" : "123qwe"}')
+                end
+              end
+            end
+            row "내 게시글 로드" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/mypost"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag "JSON"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('user_info<br/>filter_info<br/>tag_info<br/>like_info')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('base_url: /mypost<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true"}')
+                end
+              end
+            end
+            row "내 필터 로드" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/myfilter"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag "JSON"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('user_info')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('base_url: /myfilter<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true"}')
                 end
               end
             end
