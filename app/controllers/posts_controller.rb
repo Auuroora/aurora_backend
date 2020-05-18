@@ -3,7 +3,7 @@ class PostsController < ApiController
   before_action :load_post, except: %i(index create)
 
   def index
-    render json: Post.all, scope: { params: create_params, current_user: @current_user }
+    render json: Post.all.order(created_at: :desc), scope: { params: create_params, current_user: @current_user }
   end
 
   def show
