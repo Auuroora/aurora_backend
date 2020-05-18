@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  get '/mypage' => 'home#my_page'
+  get '/user/my' => 'users#show'
   get '/search' => 'home#search'
   get '/mypost' => 'home#my_post'
   get '/myfilter' => 'home#my_filter'

@@ -7,7 +7,7 @@ class UsersController < ApiController
   end
 
   def show
-    render json: @user, status: :ok
+    render json: @current_user, status: :ok
   end
 
   def create

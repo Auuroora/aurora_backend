@@ -1,9 +1,6 @@
 class HomeController < ApiController
   before_action :authorize_request
 
-  def my_page
-  end
-
   def search
   end
 
