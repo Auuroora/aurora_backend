@@ -204,6 +204,25 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                 end
               end
             end
+            row "내 정보 로드(마이페이지)" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/user/my"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  simple_format('-')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('-')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('/user/my')
+                end
+              end
+            end
             row "내 게시글 로드" do
               columns do
                 column max_width: "150px", min_width: "100px" do
