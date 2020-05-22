@@ -3,7 +3,8 @@ class PostsController < ApiController
   before_action :load_post, except: %i(index create)
 
   def index
-    render json: Post.all.order(created_at: :desc), scope: { params: create_params, current_user: @current_user }
+    @posts = Post.page(params[:page]).order(created_at: :desc).per(10)
+    render json: @posts, meta: pagination_meta(@posts), adapter: :json, scope: { params: create_params, current_user: @current_user }
   end
 
   def show
@@ -33,4 +34,15 @@ class PostsController < ApiController
   def post_params
     create_params.require(:post).permit(:title, :description, :filter_id, :price, :tag_list)
   end
+
+  def pagination_meta(object)
+    {
+      current_page: object.current_page,
+      next_page: object.next_page,
+      prev_page: object.prev_page,
+      total_pages: object.total_pages,
+      total_count: object.total_count
+    }
+  end
+
 end

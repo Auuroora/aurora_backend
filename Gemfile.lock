@@ -75,6 +75,7 @@ GEM
       zeitwerk (~> 2.1, >= 2.1.8)
     acts-as-taggable-on (6.5.0)
       activerecord (>= 5.0, < 6.1)
+    api-pagination (4.8.2)
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     bcrypt (3.1.13)
@@ -238,12 +239,14 @@ DEPENDENCIES
   active_model_serializers
   activeadmin
   acts-as-taggable-on (~> 6.0)
+  api-pagination
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
   devise
   figaro
   jwt
+  kaminari
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)

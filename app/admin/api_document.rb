@@ -31,7 +31,7 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   status_tag 'GET', class: 'primary'
                 end
                 column max_width: "150px", min_width: "100px" do
-                  span "/posts"
+                  span "/posts?page=:number"
                 end
                 column max_width: "150px", min_width: "100px" do
                   status_tag 'JSON'
@@ -40,7 +40,14 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   simple_format('user_info<br/>filter_info<br/>tag_info')
                 end
                 column max_width: "300px", min_width: "300px" do
-                  simple_format('base_url: /posts<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true"}')
+                  simple_format('base_url: /posts?page=1<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true"}
+                                  <br/>------------------Paginate info------------------<br/>data per page : 10<br/>return value : "meta": {
+                                                                                                              "current_page": #{current page number},
+                                                                                                              "next_page": #{next page number},
+                                                                                                              "prev_page": #{previous page number},
+                                                                                                              "total_pages": #{count of total page},
+                                                                                                              "total_count": #{count of total post}
+                                                                                                            }')
                 end
               end
             end
