@@ -1,9 +1,9 @@
-class LikesController < ApiController
+class FollowsController < ApplicationController
   before_action :authorize_request
   before_action :load_target
 
   def create
-    @liker_data.toggle_like!(@likeable_data)
+    user.toggle_follow!(user)
   end
 
   private

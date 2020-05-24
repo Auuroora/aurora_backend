@@ -19,7 +19,7 @@ class ApiController < ActionController::API
 
   def create_params
     begin
-      @params = request.params
+      @params = (request.post? || request.put?) ? JSON.parse(request.body.read) : request.params
       ActionController::Parameters.new(@params)
     rescue
       {}

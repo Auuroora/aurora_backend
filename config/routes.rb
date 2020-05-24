@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :filters, defaults: {format: :json}
   resources :likes
   resources :follows
+  resources :comments
 
   get '/*a', to: 'application#not_found'
 end
