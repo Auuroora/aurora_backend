@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :filters
   has_many :user_filters
   has_many :comments
+  has_many :payments
+  has_many :orders
 
   has_secure_password
   acts_as_follower
