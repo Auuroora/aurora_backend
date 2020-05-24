@@ -25,6 +25,9 @@ ko:
         filter_data_path: 필터 URL
         filter_name: 필터 이름
         user_id: 제작자
+      package:
+        title: 상품명
+        price: 가격
     models:
       aurora: 오로라
       dashboard: 대시보드
@@ -32,6 +35,7 @@ ko:
       admin_user: 관리자
       post: 게시글
       filter: 필터
+      package: 패키지 상품
   time:
     formats:
       default: "%Y-%m-%d"
