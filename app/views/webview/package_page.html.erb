@@ -70,12 +70,15 @@
         var package_id = $(this).data("id");
         var package_title = $(this).data("title");
         var package_amount = $(this).data("amount");
+        var user_id = "<%= params[:user_id] %>";
         $.post("<%= payments_path %>", {
           package_id: package_id,
           merchant_uid: 'merchant_' + new Date().getTime(),
-          amount: package_amount
+          amount: package_amount,
+          user_id: user_id
         }).done(function(data){
           if(data.payment.id != null){
+            console.log(data.user.id)
             IMP.request_pay({
               pg: 'inicis',
               pay_method: 'card',

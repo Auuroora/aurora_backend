@@ -1,9 +1,9 @@
 class PaymentsController < ApiController
-  # before_action :authorize_request
+  before_action :load_user, only: %i(create complete)
 
   def create
-    @payment = current_user.payments.create payment_params
-    render json: { payment: @payment, user: current_user }
+    @payment = @user.payments.create payment_params
+    render json: { payment: @payment, user: @user }
   end
 
   def complete
@@ -19,7 +19,7 @@ class PaymentsController < ApiController
     amount = res['response']['amount']
     state = res['response']['status']
 
-    payment = current_user.payments.find_by(merchant_uid: merchant_uid)
+    payment = @user.payments.find_by(merchant_uid: merchant_uid)
 
     if state == 'paid' && amount == payment.amount && res['response']['fail_reason'].nil?
       payment.paid_at = DateTime.now
@@ -41,12 +41,12 @@ class PaymentsController < ApiController
 
   private
 
-  def current_user
-    User.find(1)
+  def load_user
+    @user = User.find_by(id: params[:user_id])
   end
 
   def payment_params
-    params.permit(:package_id, :merchant_uid, :amount)
+    params.permit(:package_id, :merchant_uid, :amount, :user_id)
   end
 
 end

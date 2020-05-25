@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   helper_method :money
 
   def money target
-    puts target.price
     "#{number_with_delimiter(target.price.to_i)}" rescue ''
   end
 
