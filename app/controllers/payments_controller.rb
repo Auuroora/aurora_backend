@@ -12,7 +12,7 @@ class PaymentsController < ApiController
 
     res = Iamport.payment(imp_uid)
     if res['code'] == -1
-      redirect_to root_path, notice: '결제에 실패했습니다'
+      redirect_to package_page_path, notice: '결제에 실패했습니다'
       return
     end
 
