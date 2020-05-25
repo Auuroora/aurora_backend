@@ -8,7 +8,6 @@ class Order < ApplicationRecord
   aasm do
     state :init, initial: true
     state :cart
-    state :directed
     state :purchased
     state :cancel_requested
     state :cancelled
@@ -18,7 +17,7 @@ class Order < ApplicationRecord
     end
 
     event :direct do
-      transitions from: [:init], to: :directed
+      transitions from: [:init], to: :purchased
     end
 
     event :purchase do
