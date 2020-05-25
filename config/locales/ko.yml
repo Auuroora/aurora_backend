@@ -37,6 +37,11 @@ ko:
         paid_at: 결제일
         canceled_at: 결제 취소일
         amount: 결제금액
+      comment:
+        user: 작성자
+        body: 내용
+        commentable: 해당 게시글
+        created_at: 작성시간
     models:
       aurora: 오로라
       dashboard: 대시보드
@@ -46,6 +51,7 @@ ko:
       filter: 필터
       package: 패키지 상품
       payment: 결제정보
+      comment: 댓글
   time:
     formats:
       default: "%Y-%m-%d"

@@ -393,6 +393,69 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
         end
       end
 
+      tab "댓글" do
+        panel "Comment" do
+          attributes_table_for "Comment" do
+            row "Role" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  span "Method"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "URL"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "Parameter Type"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Params"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Example"
+                end
+              end
+            end
+            row "전체 댓글 로드" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Get', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/comments"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span '-'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span '-'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span '/comments'
+                end
+              end
+            end
+            row "댓글 생성" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'POST', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/comments"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'JSON'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('commentable_type ("Post")<br/>commentable_id (post_id)<br/>body<br/>')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('{"comment" : <br/>&nbsp;&nbsp;{"body" : "게시글 댓글입니다.",<br/>&nbsp;&nbsp;"commentable_type" : "Post",<br/>&nbsp;&nbsp;"commentable_id" : "1"<br/>}')
+                end
+              end
+            end
+          end
+        end
+      end
     end
 
   end

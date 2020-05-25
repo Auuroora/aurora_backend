@@ -8,6 +8,7 @@ class CommentsController < ApiController
   end
 
   def show
+    render json: @comment
   end
 
   def create
