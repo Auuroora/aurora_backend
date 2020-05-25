@@ -11,6 +11,7 @@ class PaymentsController < ApiController
     merchant_uid = params[:merchant_uid]
 
     res = Iamport.payment(imp_uid)
+    puts res
     if res['code'] == -1
       redirect_to package_page_path, notice: '결제에 실패했습니다'
       return
@@ -19,8 +20,13 @@ class PaymentsController < ApiController
     amount = res['response']['amount']
     state = res['response']['status']
 
+    puts amount
+    puts state
+
     payment = Payment.find_by(merchant_uid: merchant_uid)
 
+    puts payment.id
+    
     if state == 'paid' && amount == payment.amount
       payment.paid_at = DateTime.now
       payment.pay!
