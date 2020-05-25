@@ -3,7 +3,8 @@ class CommentsController < ApiController
   before_action :load_comment, except: %i(index create)
 
   def index
-    @comments = Comment.all
+    object = params[:commentable_type].capitalize.constantize.find_by(id: params[:commentable_id]);
+    @comments = object&.comments
     render json: @comments
   end
 

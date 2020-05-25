@@ -3,6 +3,18 @@ ActiveAdmin.register Post do
 
     scope -> { '전체' }, :all
 
+    index do
+      selectable_column
+      id_column
+      br
+      column :title
+      column :user
+      column :created_at
+      column :updated_at
+      column :price
+      column :filter
+      actions
+    end
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

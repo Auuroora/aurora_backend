@@ -37,10 +37,10 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   status_tag 'JSON'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('user_info<br/>filter_info<br/>tag_info')
+                  simple_format('user_info<br/>filter_info<br/>tag_info<br/>like_info<br/>comment_info')
                 end
                 column max_width: "300px", min_width: "300px" do
-                  simple_format('base_url: /posts?page=1<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true"}
+                  simple_format('base_url: /posts?page=1<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true", "comment_info" : "true"}
                                   <br/>------------------Paginate info------------------<br/>data per page : 10<br/>return value : "meta": {
                                                                                                               "current_page": #{current page number},
                                                                                                               "next_page": #{next page number},
@@ -63,10 +63,10 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   status_tag 'JSON'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('user_info<br/>filter_info<br/>tag_info<br/>like_info')
+                  simple_format('user_info<br/>filter_info<br/>tag_info<br/>like_info<br/>comment_info')
                 end
                 column max_width: "300px", min_width: "300px" do
-                  simple_format('base_url: /posts/1<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true"}')
+                  simple_format('base_url: /posts/1<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true", "comment_info" : "true"}')
                 end
               end
             end
@@ -415,7 +415,7 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                 end
               end
             end
-            row "전체 댓글 로드" do
+            row "게시글의 전체 댓글 로드" do
               columns do
                 column max_width: "150px", min_width: "100px" do
                   status_tag 'Get', class: 'primary'
@@ -424,13 +424,13 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   span "/comments"
                 end
                 column max_width: "150px", min_width: "100px" do
-                  span '-'
+                  status_tag 'Params'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  span '-'
+                  simple_format('commentable_type ("Post")<br/>commentable_id (post_id)')
                 end
                 column max_width: "200px", min_width: "100px" do
-                  span '/comments'
+                  span '/comments?commentable_type=Post&commentable_id=1'
                 end
               end
             end
