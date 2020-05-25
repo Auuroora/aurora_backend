@@ -78,7 +78,6 @@
           user_id: user_id
         }).done(function(data){
           if(data.payment.id != null){
-            console.log(data.user.id)
             IMP.request_pay({
               pg: 'inicis',
               pay_method: 'card',
