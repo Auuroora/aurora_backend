@@ -13,6 +13,7 @@ ko:
       user:
         username: 사용자
         email: 이메일
+        cash: 보유캐쉬
         password: 비밀번호
         password_confirmation: 비밀번호 확인
         user_type: 분류
@@ -25,6 +26,17 @@ ko:
         filter_data_path: 필터 URL
         filter_name: 필터 이름
         user_id: 제작자
+      package:
+        title: 상품명
+        price: 가격
+      payment:
+        user: 구매자
+        package: 상품명
+        state: 결제상태
+        merchant_uid: 고유 Uid
+        paid_at: 결제일
+        canceled_at: 결제 취소일
+        amount: 결제금액
     models:
       aurora: 오로라
       dashboard: 대시보드
@@ -32,6 +44,8 @@ ko:
       admin_user: 관리자
       post: 게시글
       filter: 필터
+      package: 패키지 상품
+      payment: 결제정보
   time:
     formats:
       default: "%Y-%m-%d"

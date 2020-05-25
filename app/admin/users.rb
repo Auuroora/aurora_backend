@@ -11,6 +11,7 @@ ActiveAdmin.register User do
     br
     column :username
     column :email
+    column :cash
     column :user do |user|
       I18n.t("enum.user.user_type.#{user.user_type}")
     end
@@ -22,6 +23,7 @@ ActiveAdmin.register User do
     attributes_table do
       row :username
       row :email
+      row :cash
       row :user do |user|
         I18n.t("enum.user.user_type.#{user.user_type}")
       end

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Package</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body>
+    <% packages = Package.all.order(:price) %>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-bold">Aurora</h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+      <h6 class="text-secondary">상품구매 페이지</h6>
+    </div>
+    <div class="container alert-container">
+      <% if notice %>
+        <div class="alert alert-notification alert-success font-weight-bold row justify-content-between">
+          <div class="p-1">
+            <%= notice %>
+          </div>
+          <button type="button" class="close text-white" data-dismiss="alert" aria-label="close">
+            <span class="fs-20" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+    </div>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Package 상품</h1>
+      <p class="lead">상품을 구매하여 캐쉬를 충전하여 주세요!</p>
+    </div>
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <% packages.each do |package| %>
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal"><%= package.title %></h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"><%= money(package) %><small class="text-muted"> 원</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>인앱 캐쉬 충전</li>
+                <li>필터 구매 가능</li>
+                <li>7일내 환불 가능</li>
+                <li>만료기한 없음</li>
+              </ul>
+              <button type="button" class="btn btn-lg btn-block btn-primary btn-payment" data-id="<%= package.id %>" data-title="<%= package.title %>" data-amount="<%= package.price %>">구매하기</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <small class="d-block mb-3 text-muted">© Team Aurora</small>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script type="text/javascript">
+      var IMP = window.IMP;
+      IMP.init("imp84732922");
+
+      $(".btn-payment").on("click", function(){
+        var package_id = $(this).data("id");
+        var package_title = $(this).data("title");
+        var package_amount = $(this).data("amount");
+        $.post("<%= payments_path %>", {
+          package_id: package_id,
+          merchant_uid: 'merchant_' + new Date().getTime(),
+          amount: package_amount
+        }).done(function(data){
+          if(data.payment.id != null){
+            IMP.request_pay({
+              pg: 'inicis',
+              pay_method: 'card',
+              merchant_uid: data.payment.merchant_uid,
+              name: package_title,
+              amount: data.payment.amount,
+              buyer_email: data.user.email,
+              buyer_name: data.user.username,
+              buyer_tel: '-',
+              m_redirect_url: '<%= Rails.env.development? ? "localhost:3000" : "http://aurora-application.ap-northeast-2.elasticbeanstalk.com" %><%= complete_payments_path %>'
+            });
+          } else{
+            alert("오류가 발생하였습니다. 잠시후 다시 시도하여 주세요.")
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_122401) do
+ActiveRecord::Schema.define(version: 2020_05_24_181720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,16 @@ ActiveRecord::Schema.define(version: 2020_05_23_122401) do
     t.index ["liker_id", "liker_type"], name: "fk_likes"
   end
 
+  create_table "line_filters", force: :cascade do |t|
+    t.bigint "filter_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["filter_id"], name: "index_line_filters_on_filter_id"
+    t.index ["order_id"], name: "index_line_filters_on_order_id"
+  end
+
   create_table "mentions", force: :cascade do |t|
     t.string "mentioner_type"
     t.integer "mentioner_id"
@@ -89,6 +99,38 @@ ActiveRecord::Schema.define(version: 2020_05_23_122401) do
     t.datetime "created_at"
     t.index ["mentionable_id", "mentionable_type"], name: "fk_mentionables"
     t.index ["mentioner_id", "mentioner_type"], name: "fk_mentions"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "total"
+    t.datetime "purchased_at"
+    t.bigint "user_id", null: false
+    t.string "state"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "canceled_at"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.string "title"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "package_id", null: false
+    t.string "state"
+    t.string "merchant_uid"
+    t.datetime "paid_at"
+    t.datetime "canceled_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount"
+    t.index ["package_id"], name: "index_payments_on_package_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -149,10 +191,16 @@ ActiveRecord::Schema.define(version: 2020_05_23_122401) do
     t.integer "user_type"
     t.integer "followees_count", default: 0
     t.integer "followers_count", default: 0
+    t.integer "cash", default: 0
   end
 
   add_foreign_key "comments", "users"
   add_foreign_key "filters", "users"
+  add_foreign_key "line_filters", "filters"
+  add_foreign_key "line_filters", "orders"
+  add_foreign_key "orders", "users"
+  add_foreign_key "payments", "packages"
+  add_foreign_key "payments", "users"
   add_foreign_key "posts", "filters"
   add_foreign_key "posts", "users"
   add_foreign_key "taggings", "tags"
