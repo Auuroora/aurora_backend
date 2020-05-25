@@ -1,5 +1,6 @@
 class PaymentsController < ApiController
-  before_action :load_user, only: %i(create complete)
+  skip_before_action :verify_authenticity_token
+  before_action :load_user, only: %i(create)
 
   def create
     @payment = @user.payments.create payment_params
@@ -26,7 +27,7 @@ class PaymentsController < ApiController
     payment = Payment.find_by(merchant_uid: merchant_uid)
 
     puts payment.id
-    
+
     if state == 'paid' && amount == payment.amount
       payment.paid_at = DateTime.now
       payment.pay!
