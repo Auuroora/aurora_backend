@@ -77,6 +77,9 @@
           amount: package_amount,
           user_id: user_id
         }).done(function(data){
+          alert(data.payment.id)
+          var url = "<%= Rails.env.development? ? "localhost:3000" : "http://aurora-application.ap-northeast-2.elasticbeanstalk.com" %><%= complete_payments_path %>"
+          alert(url)
           if(data.payment.id != null){
             IMP.request_pay({
               pg: 'inicis',
@@ -87,7 +90,7 @@
               buyer_email: data.user.email,
               buyer_name: data.user.username,
               buyer_tel: '-',
-              m_redirect_url: '<%= Rails.env.development? ? "localhost:3000" : "http://aurora-application.ap-northeast-2.elasticbeanstalk.com" %><%= complete_payments_path %>'
+              m_redirect_url: url
             });
           } else{
             alert("오류가 발생하였습니다. 잠시후 다시 시도하여 주세요.")
