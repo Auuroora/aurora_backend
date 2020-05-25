@@ -21,7 +21,7 @@ class PaymentsController < ApiController
 
     payment = Payment.find_by(merchant_uid: merchant_uid)
 
-    if state == 'paid' && amount == payment.amount && res['response']['fail_reason'].nil?
+    if state == 'paid' && amount == payment.amount
       payment.paid_at = DateTime.now
       payment.pay!
       payment.user.cash += payment.amount
