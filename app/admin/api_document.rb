@@ -443,13 +443,13 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   span "/comments"
                 end
                 column max_width: "150px", min_width: "100px" do
-                  status_tag 'JSON'
+                  status_tag 'JSON(Body)'
                 end
                 column max_width: "200px", min_width: "100px" do
                   simple_format('commentable_type ("Post")<br/>commentable_id (post_id)<br/>body<br/>')
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('{"comment" : <br/>&nbsp;&nbsp;{"body" : "게시글 댓글입니다.",<br/>&nbsp;&nbsp;"commentable_type" : "Post",<br/>&nbsp;&nbsp;"commentable_id" : "1"<br/>}')
+                  simple_format('{"comment" : <br/>&nbsp;&nbsp;{"body" : "게시글 댓글입니다.",<br/>&nbsp;&nbsp;"commentable_type" : "Post",<br/>&nbsp;&nbsp;"commentable_id" : "1"}<br/>}')
                 end
               end
             end
