@@ -30,8 +30,8 @@ class CommentsController < ApiController
 
   def load_target
     @comment_params = create_params.permit(:commentable_type, :commentable_id)
-    @commentable_type = comment_params[:commentable_type].classify.constantize rescue ''
-    @commentable_id = comment_params[:commentable_id] rescue ''
+    @commentable_type = @comment_params[:commentable_type].classify.constantize
+    @commentable_id = @comment_params[:commentable_id]
     @target = @commentable_type.find_by(id: @commentable_id)
   end
 
@@ -40,7 +40,7 @@ class CommentsController < ApiController
   end
 
   def comment_params
-    @params = create_params.require(:comment).permit(:body, :commentable_type, :commentable_id, :user_id)
+    create_params.require(:comment).permit(:body, :commentable_type, :commentable_id, :user_id)
     # (check_authority(@params)) ? @params.dig("comment") : nil
   end
 
