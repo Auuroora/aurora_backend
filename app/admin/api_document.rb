@@ -142,7 +142,7 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   simple_format('liker ("user")<br/>likeable ("post")<br/>likeable_id(post_id)<br/>')
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('base_url: /likes<br/>optional_parameter: {"liker" : "user", "likeable" : "post", "likeable_id" : "5"}')
+                  simple_format('{"liker" : "user",<br/>"likeable" : "post",<br/>"likeable_id" : "5"}')
                 end
               end
             end
