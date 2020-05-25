@@ -8,11 +8,12 @@ ActiveAdmin.register Post do
       id_column
       br
       column :title
+      column :filter
+      column :price
+      column '좋아요 수' do |post| (post.likers_count.to_s + " 개") end
+      column '댓글 수' do |post| (post.comments.count.to_s + " 개") end
       column :user
       column :created_at
-      column :updated_at
-      column :price
-      column :filter
       actions
     end
 

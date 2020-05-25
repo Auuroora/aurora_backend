@@ -8,16 +8,16 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
 
             row "Role" do
               columns do
-                column max_width: "150px", min_width: "100px" do
+                column max_width: "50px", min_width: "100px" do
                   span "Method"
                 end
                 column max_width: "150px", min_width: "100px" do
                   span "URL"
                 end
-                column max_width: "150px", min_width: "100px" do
+                column max_width: "100px", min_width: "100px" do
                   span "Parameter Type"
                 end
-                column max_width: "200px", min_width: "100px" do
+                column max_width: "150px", min_width: "100px" do
                   span "Params"
                 end
                 column max_width: "200px", min_width: "100px" do
@@ -27,20 +27,20 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
             end
             row "모든 게시글 로드" do
               columns do
-                column max_width: "150px", min_width: "100px" do
+                column max_width: "50px", min_width: "100px" do
                   status_tag 'GET', class: 'primary'
                 end
                 column max_width: "150px", min_width: "100px" do
                   span "/posts?page=:number"
                 end
-                column max_width: "150px", min_width: "100px" do
-                  status_tag 'JSON'
+                column max_width: "100px", min_width: "100px" do
+                  status_tag 'Params'
                 end
-                column max_width: "200px", min_width: "100px" do
+                column max_width: "150px", min_width: "100px" do
                   simple_format('user_info<br/>filter_info<br/>tag_info<br/>like_info<br/>comment_info')
                 end
-                column max_width: "300px", min_width: "300px" do
-                  simple_format('base_url: /posts?page=1<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true", "comment_info" : "true"}
+                column max_width: "500px", min_width: "300px" do
+                  simple_format('/posts?user_info=true&filter_info=true&tag_info=true&like_info=true&comment_info=true
                                   <br/>------------------Paginate info------------------<br/>data per page : 10<br/>return value : "meta": {
                                                                                                               "current_page": #{current page number},
                                                                                                               "next_page": #{next page number},
@@ -53,93 +53,93 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
             end
             row "특정 게시글 로드" do
               columns do
-                column max_width: "150px", min_width: "100px" do
+                column max_width: "50px", min_width: "100px" do
                   status_tag 'GET', class: 'primary'
                 end
                 column max_width: "150px", min_width: "100px" do
                   span "/posts/:id"
                 end
-                column max_width: "150px", min_width: "100px" do
-                  status_tag 'JSON'
+                column max_width: "100px", min_width: "100px" do
+                  status_tag 'Params'
                 end
-                column max_width: "200px", min_width: "100px" do
+                column max_width: "150px", min_width: "100px" do
                   simple_format('user_info<br/>filter_info<br/>tag_info<br/>like_info<br/>comment_info')
                 end
                 column max_width: "300px", min_width: "300px" do
-                  simple_format('base_url: /posts/1<br/>optional_parameter: {"user_info" : "true", "filter_info" : "true", "tag_info" : "true", "like_info" : "true", "comment_info" : "true"}')
+                  simple_format('/posts/1?user_info=true&filter_info=true&tag_info=true&like_info=true&comment_info=true')
                 end
               end
             end
             row "게시글 생성" do
               columns do
-                column max_width: "150px", min_width: "100px" do
+                column max_width: "50px", min_width: "100px" do
                   status_tag 'POST', class: 'primary'
                 end
                 column max_width: "150px", min_width: "100px" do
                   span "/posts"
                 end
+                column max_width: "100px", min_width: "100px" do
+                  status_tag 'JSON(BODY)'
+                end
                 column max_width: "150px", min_width: "100px" do
-                  status_tag 'JSON'
+                  simple_format('user_id (NULL false)<br/>title (NULL false)<br/>description<br/>filter_id<br/>price<br/>tag_list<br/>')
                 end
-                column max_width: "200px", min_width: "100px" do
-                  simple_format('title<br/>description<br/>filter_id<br/>price<br/>tag_list<br/>')
-                end
-                column max_width: "200px", min_width: "100px" do
-                  simple_format('{"post" : <br/>&nbsp;&nbsp;{"title" : "겨울철 필터",<br/>&nbsp;&nbsp;"description" : "따뜻한 필터를 판매",<br/>&nbsp;&nbsp;"filter_id" : "4",<br/>&nbsp;&nbsp;"price" : "1000",<br/>&nbsp;&nbsp;"tag_list" : "따뜻한, 산뜻한, 값싼"}<br/>}')
+                column max_width: "500px", min_width: "500px" do
+                  simple_format('{"post" : <br/>&nbsp;&nbsp;&nbsp;{"user_id": "1",<br/>&nbsp;&nbsp;&nbsp;"title" : "겨울철 필터",<br/>&nbsp;&nbsp;&nbsp;"description" : "따뜻한 필터를 판매",<br/>&nbsp;&nbsp;&nbsp;"filter_id" : "4",<br/>&nbsp;&nbsp;&nbsp;"price" : "1000",<br/>&nbsp;&nbsp;&nbsp;"tag_list" : "따뜻한, 산뜻한, 값싼"}<br/>}')
                 end
               end
             end
             row "게시글 삭제" do
               columns do
-                column max_width: "150px", min_width: "100px" do
+                column max_width: "50px", min_width: "100px" do
                   status_tag 'DELETE', class: 'primary'
                 end
                 column max_width: "150px", min_width: "100px" do
                   span "/posts/:id"
                 end
+                column max_width: "100px", min_width: "100px" do
+                  status_tag 'Params'
+                end
                 column max_width: "150px", min_width: "100px" do
-                  span '-'
+                  simple_format('user_id(NULL false)')
                 end
-                column max_width: "200px", min_width: "100px" do
-                  simple_format('-')
-                end
-                column max_width: "200px", min_width: "100px" do
-                  span "/posts/1"
+                column max_width: "500px", min_width: "100px" do
+                  span "/posts/1&user_id=1"
                 end
               end
             end
             row "게시글 수정" do
               columns do
-                column max_width: "150px", min_width: "100px" do
+                column max_width: "50px", min_width: "100px" do
                   status_tag 'PUT', class: 'primary'
                 end
                 column max_width: "150px", min_width: "100px" do
                   span "/posts/:id"
                 end
+                column max_width: "100px", min_width: "100px" do
+                  status_tag 'JSON(BODY)'
+                end
                 column max_width: "150px", min_width: "100px" do
-                  status_tag 'JSON'
+                  simple_format('title<br/>description<br/>filter_id<br/>price<br/>tag_list<br/>')
                 end
-                column max_width: "200px", min_width: "100px" do
-                  simple_format('title<br/>description<br/>price<br/>tag_list<br/>')
-                end
-                column max_width: "200px", min_width: "100px" do
-                  simple_format('{"post" : <br/>&nbsp;&nbsp;{"title" : "겨울철 필터 수정",<br/>&nbsp;&nbsp;"description" : "따뜻한 필터를 판매",<br/>&nbsp;&nbsp;"price" : "1000",<br/>&nbsp;&nbsp;"tag_list" : "따뜻한, 산뜻한, 값싼"}<br/>}')
+                column max_width: "500px", min_width: "500px" do
+                  simple_format('{"post" : <br/>&nbsp;&nbsp;&nbsp;{"title" : "필터 수정",<br/>&nbsp;&nbsp;&nbsp;"description" : "필터 수정 내용",<br/>&nbsp;&nbsp;&nbsp;"filter_id" : "4",<br/>&nbsp;&nbsp;&nbsp;"price" : "1000",<br/>&nbsp;&nbsp;&nbsp;"tag_list" : "따뜻한, 산뜻한, 값싼"}<br/>}')
                 end
               end
             end
             row "게시글 좋아요/좋아요 취소" do
               columns do
-                column max_width: "150px", min_width: "100px" do
+                column max_width: "50px", min_width: "100px" do
                   status_tag 'POST', class: 'primary'
                 end
                 column max_width: "150px", min_width: "100px" do
                   span "/likes"
                 end
-                column max_width: "150px", min_width: "100px" do
-                  status_tag 'JSON'
+                column max_width: "100px", min_width: "100px" do
+                  status_tag 'JSON(BODY)'
                 end
-                column max_width: "200px", min_width: "100px" do
-                  simple_format('liker ("user", 소문자)<br/>likeable ("post", 소문자)<br/>likeable_id(post_id)<br/>')
+                column max_width: "150px", min_width: "100px" do
+                  simple_format('liker ("user")<br/>likeable ("post")<br/>likeable_id(post_id)<br/>')
                 end
                 column max_width: "200px", min_width: "100px" do
                   simple_format('base_url: /likes<br/>optional_parameter: {"liker" : "user", "likeable" : "post", "likeable_id" : "5"}')

@@ -22,6 +22,7 @@ ko:
         description: 상세설명
         price: 필터 가격
         filter_id: 필터
+        filter: 첨부된 필터
       filter:
         filter_data_path: 필터 URL
         filter_name: 필터 이름

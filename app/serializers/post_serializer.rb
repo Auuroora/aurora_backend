@@ -1,6 +1,6 @@
 class PostSerializer < ActiveModel::Serializer
   include ActionView::Helpers::NumberHelper
-  attributes %i(post_info user_info filter_info tag_info like_info comment_info)
+  attributes %i(post_info user_info filter_info tag_info like_info comment_info current_user_info)
 
   def post_info
     { id: object.id, title: object.title, description: object.description, price: money(object), created_at: created_date(object) }
@@ -33,6 +33,11 @@ class PostSerializer < ActiveModel::Serializer
     comment_scope = ActiveModel::Type::Boolean.new.cast(scope.dig(:params, :comment_info))
     comment = object.comments
     { comments_count: comment.count }
+  end
+
+  def current_user_info
+    current_user = scope.dig(:current_user)
+    { name: current_user.username, id: current_user.id}
   end
 
   def created_date target

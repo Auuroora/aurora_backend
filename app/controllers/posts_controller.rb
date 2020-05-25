@@ -12,17 +12,19 @@ class PostsController < ApiController
   end
 
   def create
-    @post = @current_user.posts.create(post_params)
-    render json: @post, scope: { params: nil }
+    @post = Post.create(post_params)
+    render json: @post, scope: { params: nil, current_user: @current_user }
   end
 
   def update
-    @post&.update post_params
-    render json: @post, scope: { params: nil }
+    msg = (@post.update post_params) ? "수정에 성공하였습니다." : "수정에 실패하였습니다."
+    render json: msg
   end
 
   def destroy
-    @post.destroy
+    msg = "삭제에 성공하였습니다."
+    (check_author) ? (@post.destroy) : (msg = "권한이 없습니다.")
+    render json: msg
   end
 
   private
@@ -31,8 +33,13 @@ class PostsController < ApiController
     @post = Post.find_by(id: params[:id])
   end
 
+  def check_author
+    @author = User.find_by(id: params[:user_id])
+    return (@author == @post.user) ? true : false
+  end
+
   def post_params
-    create_params.require(:post).permit(:title, :description, :filter_id, :price, :tag_list)
+    create_params.require(:post).permit(:title, :description, :filter_id, :price, :tag_list, :user_id)
   end
 
   def pagination_meta(object)
