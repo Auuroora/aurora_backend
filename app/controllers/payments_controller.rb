@@ -8,6 +8,8 @@ class PaymentsController < ApiController
 
   def complete
     imp_uid = params[:imp_uid]
+    puts "console.log"
+    puts imp_uid
     merchant_uid = params[:merchant_uid]
 
     res = Iamport.payment(imp_uid)
