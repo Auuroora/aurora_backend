@@ -7,8 +7,8 @@ class PaymentsController < ApiController
   end
 
   def complete
-    imp_uid = params['imp_uid']
-    merchant_uid = params['merchant_uid']
+    imp_uid = params[:imp_uid]
+    merchant_uid = params[:merchant_uid]
 
     res = Iamport.payment(imp_uid)
     if res['code'] == -1
