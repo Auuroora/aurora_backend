@@ -3,21 +3,21 @@ class FiltersController < ApiController
   before_action :load_filter, except: %i(index create)
 
   def index
-    render json: Filter.all, scope: { params: create_params }
+    render json: Filter.all, scope: { params: create_params, current_user: @current_user }
   end
 
   def show
-    render json: @filter, scope: { params: create_params }
+    render json: @filter, scope: { params: create_params, current_user: @current_user }
   end
 
   def create
     filter = @current_user.filters.create(filter_params)
-    render json: filter, scope: { params: nil }
+    render json: filter, scope: { params: nil, current_user: @current_user }
   end
 
   def update
     @filter&.update filter_params
-    render json: @filter, scope: { params: nil }
+    render json: @filter, scope: { params: nil, current_user: @current_user }
   end
 
   def destroy
