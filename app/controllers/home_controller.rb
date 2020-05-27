@@ -11,6 +11,6 @@ class HomeController < ApiController
 
   def my_filter
     filters = @current_user.filters
-    render json: filters, scope: { params: create_params }
+    render json: filters, scope: { params: create_params, current_user: @current_user }
   end
 end
