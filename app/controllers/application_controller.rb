@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
     render 'webview/package_page'
   end
 
+  def payment_complete_page
+    @payment = Payment.find_by(id: params[:payment])
+    render 'webview/payment_complete_page'
+  end
+
   helper_method :money
 
   def money target

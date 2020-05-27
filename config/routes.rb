@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   get '/package_page' => 'application#package_page'
+  get '/payment_complete_page' => 'application#payment_complete_page'
   get '/user/my' => 'users#show'
   get '/search' => 'home#search'
   get '/mypost' => 'home#my_post'

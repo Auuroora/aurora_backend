@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Complete</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="row">
+                  <div class="col-md-12 text-right pr-5 pt-5">
+                    <p class="font-weight-bold mb-1">결제번호 <%= @payment.id %></p>
+                    <p class="text-muted"><%= @payment.paid_at.strftime('%Y-%m-%d %H:%M') %></p>
+                  </div>
+                </div>
+                <hr class="my-5">
+                <div class="row pb-5 p-5">
+                  <div class="col-md-6 col-6">
+                    <p class="font-weight-bold mb-4">구매자 정보</p>
+                    <p class="mb-1"><%= @payment.user&.email %></p>
+                    <p><%= @payment.user&.username %></p>
+                  </div>
+                  <div class="col-md-6 col-6 float-right">
+                    <p class="font-weight-bold mb-4">결제 정보</p>
+                    <p class="mb-1"><span class="text-muted">부가세: </span> -</p>
+                    <p class="mb-1"><span class="text-muted">결제 수단: </span> 카드</p>
+                  </div>
+                </div>
+
+                <div class="row p-5">
+                  <div class="col-md-12">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="border-0 text-uppercase small font-weight-bold">ID</th>
+                          <th class="border-0 text-uppercase small font-weight-bold">결제 상품</th>
+                          <th class="border-0 text-uppercase small font-weight-bold">가격</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><%= @payment.package&.id %></td>
+                          <td><%= @payment.package&.title %></td>
+                          <td><%= @payment.package&.price %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                  <div class="py-3 px-5 text-right">
+                      <div class="mb-2">총 결제 금액</div>
+                      <div class="h2 font-weight-light"><%= @payment.amount %> 원</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

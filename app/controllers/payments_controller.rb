@@ -26,17 +26,15 @@ class PaymentsController < ApiController
       payment.pay!
       payment.user.cash += payment.amount
       payment.user.save
-      @msg = '결제에 성공했습니다'
     else
       body = {
         imp_uid: imp_uid,
         merchant_uid: merchant_uid,
       }
       Iamport.cancel(body)
-      @msg = '결제에 실패했습니다'
     end
 
-    redirect_to package_page_path
+    redirect_to payment_complete_page_path(payment: payment)
   end
 
   private

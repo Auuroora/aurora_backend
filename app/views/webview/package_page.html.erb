@@ -60,7 +60,7 @@
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" ></script>
     <script type="text/javascript">
@@ -78,9 +78,7 @@
           amount: package_amount,
           user_id: user_id
         }).done(function(data){
-          alert(data.payment.id)
           var url = "<%= Rails.env.development? ? "localhost:3000" : "http://aurora-application.ap-northeast-2.elasticbeanstalk.com" %><%= complete_payments_path %>"
-          alert(url)
           if(data.payment.id != null){
             IMP.request_pay({
               pg: 'inicis',
