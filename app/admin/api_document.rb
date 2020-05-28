@@ -666,7 +666,7 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   span "/orders"
                 end
                 column max_width: "150px", min_width: "100px" do
-                  span 'Params'
+                  status_tag 'Params'
                 end
                 column max_width: "200px", min_width: "100px" do
                   simple_format('state (cart, purchased, cancel_requested, cancelled)')
