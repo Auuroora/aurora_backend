@@ -20,5 +20,7 @@ Rails.application.routes.draw do
       get :complete
     end
   end
+  resources :orders
+  resources :line_filters
   get '/*a', to: 'application#not_found'
 end

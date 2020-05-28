@@ -37,7 +37,7 @@ class PostSerializer < ActiveModel::Serializer
 
   def current_user_info
     current_user = scope.dig(:current_user)
-    { name: current_user.username, id: current_user.id}
+    { name: current_user.username, id: current_user.id, case: current_user.cash }
   end
 
   def created_date target

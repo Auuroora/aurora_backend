@@ -43,6 +43,16 @@ ko:
         body: 내용
         commentable: 해당 게시글
         created_at: 작성시간
+      order:
+        total: 총액
+        purchased_at: 구매일자
+        canceled_at: 취소일자
+        state: 주문 상태
+      line_filter:
+        filter: 담은 필터
+        order: 주문 내역 정보
+        amount: 가격
+        check: 선택 여부
     models:
       aurora: 오로라
       dashboard: 대시보드
@@ -53,6 +63,8 @@ ko:
       package: 패키지 상품
       payment: 결제정보
       comment: 댓글
+      order: 주문 내역
+      line_filter: 장바구니 상품
   time:
     formats:
       default: "%Y-%m-%d"

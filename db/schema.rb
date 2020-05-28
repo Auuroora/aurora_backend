@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_181720) do
+ActiveRecord::Schema.define(version: 2020_05_28_043307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,9 +84,10 @@ ActiveRecord::Schema.define(version: 2020_05_24_181720) do
   create_table "line_filters", force: :cascade do |t|
     t.bigint "filter_id", null: false
     t.bigint "order_id", null: false
-    t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount", default: 0
+    t.boolean "check", default: false
     t.index ["filter_id"], name: "index_line_filters_on_filter_id"
     t.index ["order_id"], name: "index_line_filters_on_order_id"
   end

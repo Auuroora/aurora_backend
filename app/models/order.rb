@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   include AASM
 
   belongs_to :user
-  has_many :line_items, dependent: :destroy
+  has_many :line_filters, dependent: :destroy
 
   aasm.attribute_name :state
   aasm do
@@ -16,12 +16,8 @@ class Order < ApplicationRecord
       transitions from: [:init], to: :cart
     end
 
-    event :direct do
-      transitions from: [:init], to: :purchased
-    end
-
     event :purchase do
-      transitions from: [:cart], to: :purchased, after: proc { self.purchased_at = DateTime.now }
+      transitions from: [:init], to: :purchased, after: proc { self.purchased_at = DateTime.now }
     end
 
     event :cancel_request do
@@ -31,5 +27,10 @@ class Order < ApplicationRecord
     event :cancel do
       transitions from: [:cancel_requested], to: :cancelled, after: proc { self.canceled_at = DateTime.now }
     end
+  end
+
+  def update_total
+    total = self.line_filters.sum(:amount)
+    update(total: total)
   end
 end

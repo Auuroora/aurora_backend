@@ -456,7 +456,235 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
           end
         end
       end
-    end
 
+      tab "결제" do
+        panel "Payment" do
+          attributes_table_for "Payment" do
+            row "Role" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  span "Method"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "URL"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "Parameter Type"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Params"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Example"
+                end
+              end
+            end
+            row "결제 상품 페이지" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Get', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/package_page"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Params'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('user_id')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span '/package_page?user_id=1'
+                end
+              end
+            end
+            row "결제 생성" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Post', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/payments"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'JSON(BODY)'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('package_id<br/>user_id')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span '{ "package_id" : "1", "user_id" : "1" }'
+                end
+              end
+            end
+            row "결제 처리" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/payments/complete"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Params'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('merchant_uid<br/>imp_uid')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span '/payments/complete?merchant_uid=merchant_1102&imp_uid=imp_1102'
+                end
+              end
+            end
+            row "결제 완료 페이지" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Get', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/payment_complete_page"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Params'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('payment_id')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span '/payment_complete_page?payment_id=1'
+                end
+              end
+            end
+          end
+        end
+      end
+
+      tab "주문" do
+        panel "Order" do
+          attributes_table_for "Order" do
+            row "Role" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  span "Method"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "URL"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "Parameter Type"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Params"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Example"
+                end
+              end
+            end
+            row "장바구니 상품 로드" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Get', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/line_filters"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span '-'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('-')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span '/line_filters'
+                end
+              end
+            end
+            row "장바구니에 상품 담기" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Post', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/line_filters"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'JSON(BODY)'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('filter_id<br/>amount (필터 가격)')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('{"line_filter" : <br/>&nbsp;&nbsp;{"filter_id" : "1",<br/>&nbsp;&nbsp;"amount" : "1000"}<br/>}')
+                end
+              end
+            end
+            row "장바구니 상품 체크하기" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Put', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/line_filters/:id"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span '-'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('-')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('/line_filters/1')
+                end
+              end
+            end
+            row "장바구니에서 상품 삭제" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'DELETE', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/line_filters/:id"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span '-'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('-')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('/line_filters/1')
+                end
+              end
+            end
+            row "내 주문목록 보기" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/orders"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span 'Params'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('state (cart, purchased, cancel_requested, cancelled)')
+                end
+                column max_width: "300px", min_width: "300px" do
+                  simple_format('{"state" : "cart"}
+                                  <br/>------------------State info------------------<br/>
+                                  - state 변수 없을 경우 -> 모든 주문내역 로드<br/>
+                                  - state 변수 cart -> 장바구니 주문내역 로드<br/>
+                                  - state 변수 purchased -> 구매한 주문내역 로드<br/>
+                                  - state 변수 cancel_requested -> 환불 요청한 주문내역 로드<br/>
+                                  - state 변수 cancelled -> 환불된 주문내역 로드')
+                end
+              end
+            end
+          end
+        end
+      end
+    end
   end
 end
