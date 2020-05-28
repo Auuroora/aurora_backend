@@ -9,7 +9,7 @@ class PostSerializer < ActiveModel::Serializer
   def filter_info
     filter_scope = ActiveModel::Type::Boolean.new.cast(scope.dig(:params, :filter_info))
     filter = object.filter
-    { filter_data_path: filter.filter_data_path, filter_name: filter.filter_name } if filter_scope rescue nil
+    { id: filter.id, filter_data_path: filter.filter_data_path, filter_name: filter.filter_name } if filter_scope rescue nil
   end
 
   def user_info
