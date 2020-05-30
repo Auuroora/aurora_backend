@@ -3,7 +3,7 @@ class LineFilterSerializer < ActiveModel::Serializer
 
   def filter_info
     filter = object.filter
-    { filter_id: filter.id, filter_data_path: filter.filter_data_path }
+    { filter_id: filter.id, filter_data_path: filter.filter_data_path, filter_name: filter.filter_name }
   end
 
   def post_info
