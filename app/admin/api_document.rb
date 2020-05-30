@@ -612,10 +612,10 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                   status_tag 'JSON(BODY)'
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('filter_id<br/>amount (필터 가격)')
+                  simple_format('filter_id<br/>post_id<br/>amount (필터 가격)')
                 end
                 column max_width: "200px", min_width: "100px" do
-                  simple_format('{"line_filter" : <br/>&nbsp;&nbsp;{"filter_id" : "1",<br/>&nbsp;&nbsp;"amount" : "1000"}<br/>}')
+                  simple_format('{"line_filter" : <br/>&nbsp;&nbsp;{"filter_id" : "1",<br/>&nbsp;&nbsp;"post_id" : "1"<br/>&nbsp;&nbsp;"amount" : "1000"}<br/>}')
                 end
               end
             end

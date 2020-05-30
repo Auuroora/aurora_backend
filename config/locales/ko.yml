@@ -51,6 +51,7 @@ ko:
       line_filter:
         filter: 담은 필터
         order: 주문 내역 정보
+        post: 필터 게시글 정보
         amount: 가격
         check: 선택 여부
     models:

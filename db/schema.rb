@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_28_043307) do
+ActiveRecord::Schema.define(version: 2020_05_30_125111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,8 +88,10 @@ ActiveRecord::Schema.define(version: 2020_05_28_043307) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "amount", default: 0
     t.boolean "check", default: false
+    t.bigint "post_id"
     t.index ["filter_id"], name: "index_line_filters_on_filter_id"
     t.index ["order_id"], name: "index_line_filters_on_order_id"
+    t.index ["post_id"], name: "index_line_filters_on_post_id"
   end
 
   create_table "mentions", force: :cascade do |t|

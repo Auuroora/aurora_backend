@@ -36,7 +36,7 @@ class LineFiltersController < ApiController
   end
 
   def line_filters_params
-    create_params.require(:line_filter).permit(:filter_id, :order_id, :amount)
+    create_params.require(:line_filter).permit(:filter_id, :order_id, :amount, :post_id)
   end
 
 end

@@ -1,18 +1,18 @@
 class LineFilterSerializer < ActiveModel::Serializer
-  attributes %i(filter_info order_info current_user_info)
+  attributes %i(filter_info order_info post_info)
 
   def filter_info
-    filter =object.filter
-    { filter_id: filter.id, filter_data_path: filter.filter_data_path, filter_name: filter.filter_name }
+    filter = object.filter
+    { filter_id: filter.id, filter_data_path: filter.filter_data_path }
+  end
+
+  def post_info
+    post = object.post
+    { post_id: post.id, post_title: post.title }
   end
 
   def order_info
-    order= object.order
+    order = object.order
     { state: order.state, total: order.total }
-  end
-
-  def current_user_info
-    current_user = scope.dig(:current_user)
-    { name: current_user.username, id: current_user.id } if current_user.present?
   end
 end
