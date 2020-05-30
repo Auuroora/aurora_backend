@@ -6,7 +6,7 @@ class LineFiltersController < ApiController
   def index
     order = @current_user.orders.cart.first
     line_filters = order.line_filters if order.present?
-    render json: line_filters
+    render json: line_filters, scope: { current_user: @current_user }
   end
 
   def create

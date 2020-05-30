@@ -242,38 +242,6 @@ ActiveAdmin.register_page I18n.t("active_admin.database_schema") do
             end
           end
         end
-        row "" do
-          columns do
-            column max_width: "200px", min_width: "200px" do
-              span "followable_type"
-            end
-            column max_width: "200px", min_width: "200px" do
-              status_tag "string"
-            end
-            column max_width: "200px", min_width: "200px" do
-              span "-"
-            end
-            column max_width: "300px", min_width: "300px" do
-              span "Polymorphic target model"
-            end
-          end
-        end
-        row "" do
-          columns do
-            column max_width: "200px", min_width: "200px" do
-              span "followable_id"
-            end
-            column max_width: "200px", min_width: "200px" do
-              status_tag "integer"
-            end
-            column max_width: "200px", min_width: "200px" do
-              span "foreign key"
-            end
-            column max_width: "300px", min_width: "300px" do
-              span "Polymorphic target id"
-            end
-          end
-        end
         row "Filter" do
           columns do
             column max_width: "200px", min_width: "200px" do
