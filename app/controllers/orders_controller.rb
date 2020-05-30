@@ -15,6 +15,7 @@ class OrdersController < ApiController
 
   def create
     order = @current_user.orders.create(total: @cart_filters.checked.sum(:amount))
+    @current_user.orders.cart.first.update_total
     order.purchase!
     @cart_filters.checked.each do |filter|
       filter.update(order_id: order.id)
