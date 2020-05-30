@@ -30,7 +30,7 @@ class Order < ApplicationRecord
   end
 
   def update_total
-    total = self.line_filters.sum(:amount)
+    total = self.line_filters.checked.sum(:amount)
     update(total: total)
   end
 end
