@@ -1,8 +1,8 @@
 class LineFilterSerializer < ActiveModel::Serializer
-  attributes %i(filter_info order_info post_info)
+  attributes %i(line_filter_info filter_info order_info post_info)
 
   def line_filter_info
-    { id: object.id, amount: object.amout, check: object.check, created_at: object.created_at }
+    { id: object.id, amount: object.amount, check: object.check, created_at: object.created_at }
   end
 
   def filter_info
