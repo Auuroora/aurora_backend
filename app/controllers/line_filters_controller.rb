@@ -1,7 +1,7 @@
 class LineFiltersController < ApiController
   before_action :authorize_request
   before_action :load_line_filter, only: %i(destroy update)
-  after_action :load_cart_order, only: %i(index, create, update)
+  before_action :load_cart_order, only: %i(index create update)
 
   def index
     line_filters = @order.line_filters if @order.present?
