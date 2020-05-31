@@ -19,7 +19,7 @@ class OrdersController < ApiController
     @cart_filters.checked.each do |filter|
       filter.update(order_id: order.id)
     end
-    @current_user.cash -= order.total
+    @current_user.cash -= order.total.to_i
     @current_user.save
     @current_user.orders.cart.first.update_total
   end
