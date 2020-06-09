@@ -4,7 +4,7 @@ class LineFiltersController < ApiController
   before_action :load_cart_order, only: %i(index create update)
 
   def index
-    line_filters = @order.line_filters if @order.present?
+    line_filters = @order.line_filters.order(created_at: :desc) if @order.present?
     render json: line_filters, scope: { current_user: @current_user }
   end
 
@@ -15,10 +15,9 @@ class LineFiltersController < ApiController
   end
 
   def update
-    target = @line_filter
-    (target.check?) ? target.update(check: false) : target.update(check: true)
+    (@line_filter.check?) ? @line_filter.update(check: false) : @line_filter.update(check: true)
     @order.update_total
-    render json: target
+    render json: @line_filter
   end
 
   def destroy

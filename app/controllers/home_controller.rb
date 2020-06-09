@@ -10,7 +10,15 @@ class HomeController < ApiController
   end
 
   def my_filter
+    purchase_filters = []
+     @current_user.orders.purchased.each do |order|
+      order.line_filters.each do |line_filter|
+        purchase_filters << line_filter.filter
+      end
+    end
     filters = @current_user.filters
-    render json: filters, scope: { params: create_params, current_user: @current_user }
+    
+    render json: {my_filter: filters, purchase_filter: temps}, scope: { params: create_params, current_user: @current_user }
   end
+
 end

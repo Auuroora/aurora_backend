@@ -9,7 +9,7 @@ class ApiController < ActionController::API
     begin
       @current_user = User.find(auth_token[:user_id])
     rescue ActiveRecord::RecordNotFound, JWT::DecodeError
-      render json: { errors: 'Not found' }, status: :not_found
+      render json: { errors: 'Token not found' }, status: :not_found
     rescue ActionController::UnknownFormat
       render json: { message: 'Bad request'}, status: :unprocessable_entity
     rescue
