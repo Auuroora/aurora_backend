@@ -11,4 +11,12 @@ ActiveAdmin.register Comment do
     column :created_at
     actions
   end
+
+  controller do
+    def destroy
+      resource.update(body: "관라자에 의해 삭제된 댓글입니다.")
+      resource.destroy
+      redirect_to action: :index
+    end
+  end
 end

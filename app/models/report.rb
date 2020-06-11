@@ -20,4 +20,8 @@ class Report < ApplicationRecord
       transitions from: [:check], to: :manage
     end
   end
+
+  def reportable
+    reportable_type.constantize.unscoped { super }
+  end
 end
