@@ -54,6 +54,16 @@ ko:
         post: 필터 게시글 정보
         amount: 가격
         check: 선택 여부
+      report:
+        category: 신고 유형
+        content: 내용
+        reportable_type: 신고 대상
+        reportable_id: 해당 게시글
+        reportable: 신고된 게시글
+        created_at: 신고 일자
+        updated_at: 수정 일자
+        user: 신고자
+        state: 진행 상태
     models:
       aurora: 오로라
       dashboard: 대시보드
@@ -66,6 +76,7 @@ ko:
       comment: 댓글
       order: 주문 내역
       line_filter: 장바구니 상품
+      report: 신고처리
   time:
     formats:
       default: "%Y-%m-%d"
@@ -77,6 +88,10 @@ ko:
         consumer: 소비자
         maker: 제작자
         admin: 관리자
+    report:
+      category:
+        insult: 욕설
+        copyright: 저작권
   active_admin:
     api_document: "API 명세서"
     database_schema: "DB 스키마"
@@ -198,3 +213,15 @@ ko:
         sign_in_with_omniauth_provider: "%{provider} 으로 로그인"
         resend_unlock_instructions: "계정 잠금 해제하기"
         resend_confirmation_instructions: "계정 승인 요청하기"
+    enum:
+      report:
+        category:
+          copyright: 저작권
+          insult: 욕설
+        reportable_type:
+          Post: 게시글
+          Comment: 댓글
+        state:
+          recept: 접수
+          check: 처리중
+          manage: 처리 완료

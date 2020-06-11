@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_125111) do
+ActiveRecord::Schema.define(version: 2020_06_09_123248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,19 @@ ActiveRecord::Schema.define(version: 2020_05_30_125111) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.integer "category"
+    t.text "content"
+    t.string "reportable_type", null: false
+    t.bigint "reportable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.string "state"
+    t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable_type_and_reportable_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -206,6 +219,7 @@ ActiveRecord::Schema.define(version: 2020_05_30_125111) do
   add_foreign_key "payments", "users"
   add_foreign_key "posts", "filters"
   add_foreign_key "posts", "users"
+  add_foreign_key "reports", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_filters", "filters"
   add_foreign_key "user_filters", "users"
