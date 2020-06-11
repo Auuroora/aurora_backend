@@ -31,7 +31,7 @@ class PostSerializer < ActiveModel::Serializer
 
   def comment_info
     comment_scope = ActiveModel::Type::Boolean.new.cast(scope.dig(:params, :comment_info))
-    comment = object.comments.with_deleted
+    comment = object.comments
     { comments_count: comment.count }
   end
 

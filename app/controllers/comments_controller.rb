@@ -4,7 +4,7 @@ class CommentsController < ApiController
   before_action :load_comment, except: %i(index create)
 
   def index
-    @comments = @target&.comments
+    @comments = @target&.comments.with_deleted
     render json: @comments, scope: { current_user: @current_user }
   end
 
