@@ -219,6 +219,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     ruby_dep (1.5.0)
+    ruby_http_client (3.4.3)
     sassc (2.2.1)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -227,6 +228,11 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sendgrid-actionmailer (3.0.0)
+      mail (~> 2.7)
+      sendgrid-ruby (~> 6.0)
+    sendgrid-ruby (6.1.1)
+      ruby_http_client (~> 3.4.0)
     socialization (1.2.3)
       activerecord
     spring (2.1.0)
@@ -278,6 +284,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (= 6.0.0)
+  sendgrid-actionmailer
   socialization
   spring
   spring-watcher-listen (~> 2.0.0)

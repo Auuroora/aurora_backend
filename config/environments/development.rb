@@ -42,7 +42,12 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-
+  # Sendgrid Settings
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
+    config.action_mailer.sendgrid_actionmailer_settings = {
+    api_key: ENV['SENDGRID_API_KEY']
+  }
+  
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 

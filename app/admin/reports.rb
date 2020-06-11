@@ -62,11 +62,13 @@ ActiveAdmin.register Report do
 
   member_action :check, method: :put do
     resource.checking!
+    AdminMailer.send_check_email(resource.user).deliver
     redirect_to action: :index
   end
 
   member_action :manage, method: :put do
     resource.managing!
+    AdminMailer.send_manage_email(resource.user).deliver
     redirect_to action: :index
   end
 
