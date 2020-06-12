@@ -1,16 +1,16 @@
 class OrdersController < ApiController
   before_action :authorize_request
-  before_action :load_order, only: %i(show)
+  before_action :load_orders, only: %i(index show)
   before_action :load_cart_filters, only: %i(create)
 
   def index
-    @orders = (order_type[:state].present?) ? Order.send(order_type[:state]) : Order.all
+    @orders = (order_type[:state].present?) ? @orders.send(order_type[:state]) : @orders.all
     render json: @orders
   end
 
   def show
-    # 수정 중
-    render json: @order
+    line_filters = @orders.line_filters
+    render json:line_filters
   end
 
   def create
@@ -40,8 +40,8 @@ class OrdersController < ApiController
     create_params.permit(:id, :state)
   end
 
-  def load_order
-    @order = Order.find_by(id: params[:id])
+  def load_orders
+    @orders = (params[:id]) ? @current_user.orders.find_by(id: params[:id]) : @current_user.orders
   end
 
   def load_cart_filters

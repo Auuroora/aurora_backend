@@ -12,7 +12,7 @@ class LineFilterSerializer < ActiveModel::Serializer
 
   def post_info
     post = object.post
-    { post_id: post.id, post_title: post.title } rescue nil
+    { post_id: post.id, post_title: post.title }
   end
 
   def order_info

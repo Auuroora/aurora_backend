@@ -5,4 +5,8 @@ class LineFilter < ApplicationRecord
 
   scope :checked, -> { where(check: true) }
   scope :unchecked, -> { where(check: false) }
+
+  def post
+    Post.unscoped { super }
+  end
 end
