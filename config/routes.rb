@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/search' => 'home#search'
   get '/mypost' => 'home#my_post'
   get '/myfilter' => 'home#my_filter'
+  get '/mylikes' => 'home#my_likes_post'
   post '/auth/login', to: 'authentication#login'
   resources :users, defaults: {format: :json}
   resources :posts, defaults: {format: :json}

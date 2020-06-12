@@ -21,4 +21,13 @@ class HomeController < ApiController
     render json: {my_filter: filters, purchase_filter: purchase_filters}, scope: { params: create_params, current_user: @current_user }
   end
 
+  def my_likes_post
+    like_posts = []
+    Like.where(liker: @current_user).each do |like|
+      like_posts << like.likeable_type.constantize.find_by(id: like.likeable_id)
+    end
+
+    render json: like_posts, scope: { params: create_params, current_user: @current_user }
+  end
+
 end

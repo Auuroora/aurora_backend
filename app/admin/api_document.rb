@@ -268,6 +268,25 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                 end
               end
             end
+            row "내가 찜한 필터 로드" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/mylikes"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag "Params"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('user_info<br>filter_info')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('mylikes?user_info=true&filter_info=true')
+                end
+              end
+            end
           end
         end
       end
