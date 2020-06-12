@@ -23,7 +23,14 @@ class PostsController < ApiController
 
   def destroy
     msg = "삭제에 성공하였습니다."
-    (check_author) ? (@post.destroy) : (msg = "권한이 없습니다.")
+    if check_author
+      ActiveRecord::Base.transaction do
+        destroy_cart_filter(@post)
+        @post.destroy
+      end
+    else
+      (msg = "권한이 없습니다.")
+    end
     render json: msg
   end
 
@@ -36,6 +43,12 @@ class PostsController < ApiController
   def check_author
     @author = User.find_by(id: params[:user_id])
     return (@author == @post.user) ? true : false
+  end
+
+  def destroy_cart_filter object
+    Order.cart.each do |cart|
+      cart.line_filters.where(post: object).destroy_all
+    end
   end
 
   def post_params
