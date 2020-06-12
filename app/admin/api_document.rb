@@ -682,6 +682,88 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                 end
               end
             end
+            row "주문 상세내역 보기" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/orders/:id"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span '-'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('-')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('/orders/1')
+                end
+              end
+            end
+            row "내 판매목록 보기" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/myposts"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag "JSON"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('filter_info')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('base_url: /mypost<br/>optional_parameter: {"filter_info" : "true"}')
+                end
+              end
+            end
+          end
+        end
+      end
+      tab "신고" do
+        panel "Report" do
+          attributes_table_for "Report" do
+            row "Role" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  span "Method"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "URL"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "Parameter Type"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Params"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Example"
+                end
+              end
+            end
+            row "신고하기" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  span "POST"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/reports"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'JSON(Body)'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('reportable_type (Post, Comment)<br/>reportable_id<br/>category (copyright, insult)<br/>content<br/>')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('{"report" : <br/>&nbsp;&nbsp;{"reportable_type" : "Post",<br/>&nbsp;&nbsp;"reportable_id" : "1",<br/>&nbsp;&nbsp;"category" : "copyright", <br/>&nbsp;&nbsp;"content" : "저작권 신고"}<br/>}')
+                end
+              end
+            end
           end
         end
       end
