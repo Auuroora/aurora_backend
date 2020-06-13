@@ -70,6 +70,26 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                 end
               end
             end
+            row "게시글 검색" do
+              columns do
+                column max_width: "50px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/posts"
+                end
+                column max_width: "100px", min_width: "100px" do
+                  status_tag 'Params'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  simple_format('title_cont (제목 검색)<br/>description_cont (내용 검색)<br/>tag_cont (태그 검색)<br/>')
+                end
+                column max_width: "500px", min_width: "500px" do
+                  simple_format('/posts?title_cont=겨울
+                                 /posts?title_cont=겨울&description_cont=차가운 (중첩 가능)')
+                end
+              end
+            end
             row "게시글 생성" do
               columns do
                 column max_width: "50px", min_width: "100px" do

@@ -3,7 +3,18 @@ class PostsController < ApiController
   before_action :load_post, except: %i(index create)
 
   def index
-    @posts = Post.page(params[:page]).order(created_at: :desc).per(10)
+    @posts = Post.all
+
+    # 제목, 내용 검색
+    if params[:title_cont] || params[:description_cont]
+      @posts = @posts.ransack(params).result
+    end
+    # 태그 검색
+    if params[:tag_cont]
+      @posts = @posts.tagged_with(params[:tag_cont])
+    end
+
+    @posts = @posts.page(params[:page]).order(created_at: :desc).per(10)
     render json: @posts, meta: pagination_meta(@posts), adapter: :json, scope: { params: create_params, current_user: @current_user }
   end
 

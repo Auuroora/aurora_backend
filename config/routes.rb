@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get '/package_page' => 'application#package_page'
   get '/payment_complete_page' => 'application#payment_complete_page'
   get '/user/my' => 'users#show'
-  get '/search' => 'home#search'
   get '/mypost' => 'home#my_post'
   get '/myfilter' => 'home#my_filter'
   get '/mylikes' => 'home#my_likes_post'
