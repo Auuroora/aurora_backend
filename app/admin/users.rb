@@ -12,9 +12,6 @@ ActiveAdmin.register User do
     column :username
     column :email
     column :cash
-    column :user do |user|
-      I18n.t("enum.user.user_type.#{user.user_type}")
-    end
     column :created_at
     column :updated_at
     actions
@@ -25,9 +22,6 @@ ActiveAdmin.register User do
       row :username
       row :email
       row :cash
-      row :user do |user|
-        I18n.t("enum.user.user_type.#{user.user_type}")
-      end
     end
   end
 
@@ -37,7 +31,6 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :user_type, as: :select, collection: [['소비자', :consumer], ['제작자', :maker], ['관리자', :admin]]
     end
     f.actions
   end

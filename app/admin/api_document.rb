@@ -287,6 +287,44 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                 end
               end
             end
+            row "내 팔로워/팔로잉 목록 로드" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'GET', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/follows"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'Params'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('type (followers, followees)')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('follows?type=followers')
+                end
+              end
+            end
+            row "유저 팔로우/팔로우 취소" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'POST', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/follows"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'JSON(BODY)'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('follower ("user")<br/>followable ("user")<br/>followable_id(user_id)<br/>')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('{"follower" : "user",<br/>"followable" : "user",<br/>"followable_id" : "3"}')
+                end
+              end
+            end
           end
         end
       end
