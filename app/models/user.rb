@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :payments
   has_many :orders
   has_many :reports
+  has_many :histories, through: :filters, source: :histories
 
   has_secure_password
   acts_as_follower

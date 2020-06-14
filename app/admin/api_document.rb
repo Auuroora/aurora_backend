@@ -819,6 +819,50 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
           end
         end
       end
+      tab "판매" do
+        panel "Report" do
+          attributes_table_for "History" do
+            row "History" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  span "Method"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "URL"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "Parameter Type"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Params"
+                end
+                column max_width: "200px", min_width: "100px" do
+                  span "Example"
+                end
+              end
+            end
+            row "판매 내역 조회" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  span "GET"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/histories"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  simple_format '-'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format '-'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format '/histories'
+                end
+              end
+            end
+          end
+        end
+      end
       tab "신고" do
         panel "Report" do
           attributes_table_for "Report" do
