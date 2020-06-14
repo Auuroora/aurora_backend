@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   resources :orders
   resources :line_filters
   resources :reports
+  resources :histories
   get '/*a', to: 'application#not_found'
 end

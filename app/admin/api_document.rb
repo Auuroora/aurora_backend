@@ -734,6 +734,25 @@ ActiveAdmin.register_page I18n.t("active_admin.api_document") do
                 end
               end
             end
+            row "장바구니 상품 결제" do
+              columns do
+                column max_width: "150px", min_width: "100px" do
+                  status_tag 'POST', class: 'primary'
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span "/orders"
+                end
+                column max_width: "150px", min_width: "100px" do
+                  span '-'
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('-')
+                end
+                column max_width: "200px", min_width: "100px" do
+                  simple_format('/orders')
+                end
+              end
+            end
             row "내 주문목록 보기" do
               columns do
                 column max_width: "150px", min_width: "100px" do

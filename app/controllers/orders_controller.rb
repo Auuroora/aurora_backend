@@ -17,7 +17,10 @@ class OrdersController < ApiController
     order = @current_user.orders.create(total: @cart_filters.checked.sum(:amount))
     order.purchase!
     @cart_filters.checked.each do |filter|
-      filter.update(order_id: order.id)
+      ActiveRecord::Base.transaction do
+        filter.update(order_id: order.id)
+        create_history(filter)
+      end
     end
     @current_user.cash -= order.total.to_i
     @current_user.save
@@ -46,6 +49,10 @@ class OrdersController < ApiController
 
   def load_cart_filters
     @cart_filters = @current_user.orders.cart.first.line_filters
+  end
+
+  def create_history object
+    History.create(amount: object.amount, user_id: @current_user.id, filter_id: object.filter.id)
   end
 
 end

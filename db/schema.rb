@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_183831) do
+ActiveRecord::Schema.define(version: 2020_06_14_153123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,18 @@ ActiveRecord::Schema.define(version: 2020_06_12_183831) do
     t.datetime "created_at"
     t.index ["followable_id", "followable_type"], name: "fk_followables"
     t.index ["follower_id", "follower_type"], name: "fk_follows"
+  end
+
+  create_table "histories", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "user_id", null: false
+    t.bigint "filter_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "state"
+    t.datetime "exchanged_at"
+    t.index ["filter_id"], name: "index_histories_on_filter_id"
+    t.index ["user_id"], name: "index_histories_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -216,6 +228,8 @@ ActiveRecord::Schema.define(version: 2020_06_12_183831) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "filters", "users"
+  add_foreign_key "histories", "filters"
+  add_foreign_key "histories", "users"
   add_foreign_key "line_filters", "filters"
   add_foreign_key "line_filters", "orders"
   add_foreign_key "orders", "users"
