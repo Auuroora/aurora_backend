@@ -1,6 +1,9 @@
 class History < ApplicationRecord
   include AASM
 
+  belongs_to :user
+  belongs_to :filter
+
   aasm.attribute_name :state
   aasm do
     state :non_exchange, initial: true
