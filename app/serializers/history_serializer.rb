@@ -1,5 +1,5 @@
 class HistorySerializer < ActiveModel::Serializer
-  attributes %i(history_info filter_info user_info)
+  attributes %i(history_info filter_info user_info current_user_info)
 
   def history_info
     {id: object.id, state: object.state, amount: object.amount, created_at: created_date(object.created_at), exchanged_at: created_date(object.exchanged_at)}

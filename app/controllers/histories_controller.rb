@@ -4,7 +4,7 @@ class HistoriesController < ApiController
 
   def index
     histories = @current_user.histories
-    render json: histories, { current_user: @current_user } 
+    render json: histories, scope: { current_user: @current_user }
   end
 
   def update
