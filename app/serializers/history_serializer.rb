@@ -15,6 +15,11 @@ class HistorySerializer < ActiveModel::Serializer
     { id: user.id, username: user.username, email: user.email, created_at: created_date(user.created_at) }
   end
 
+  def current_user_info
+    current_user = scope.dig(:current_user)
+    { cash: current_user.cash, salse_count: current_user.histories.count}
+  end
+
   def created_date date
     "#{date.strftime('%Y-%m-%d')}" rescue ''
   end
