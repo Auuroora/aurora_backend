@@ -15,7 +15,7 @@ class PostSerializer < ActiveModel::Serializer
   def user_info
     user_scope = ActiveModel::Type::Boolean.new.cast(scope.dig(:params, :user_info))
     user = object.user
-    { id: user.id, username: user.username, email: user.email, created_at: created_date(user) } if user_scope rescue nil
+    { id: user.id, username: user.username, email: user.email, created_at: created_date(user), image: user.image } if user_scope rescue nil
   end
 
   def tag_info
