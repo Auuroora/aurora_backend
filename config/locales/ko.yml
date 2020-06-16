@@ -64,6 +64,8 @@ ko:
         updated_at: 수정 일자
         user: 신고자
         state: 진행 상태
+      history:
+        amount:
     models:
       aurora: 오로라
       dashboard: 대시보드
@@ -77,6 +79,7 @@ ko:
       order: 주문 내역
       line_filter: 장바구니 상품
       report: 신고처리
+      history: 판매 내역
   time:
     formats:
       default: "%Y-%m-%d"
