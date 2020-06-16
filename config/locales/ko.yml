@@ -65,7 +65,10 @@ ko:
         user: 신고자
         state: 진행 상태
       history:
-        amount:
+        amount: 수익금
+        filter: 판매한 필터
+        state: 수령 여부
+        exchanged_at: 환급일자
     models:
       aurora: 오로라
       dashboard: 대시보드
@@ -95,6 +98,12 @@ ko:
       category:
         insult: 욕설
         copyright: 저작권
+    history:
+      state:
+        non_exchange: 미환급
+        cashed: 캐쉬로 수령
+        exchange_requested: 환급 요청됨
+        exchanged: 환급됨
   active_admin:
     api_document: "API 명세서"
     database_schema: "DB 스키마"
@@ -228,3 +237,9 @@ ko:
           recept: 접수
           check: 처리중
           manage: 처리 완료
+      history:
+        state:
+          non_exchange: 미환급
+          cashed: 캐쉬로 수령
+          exchange_requested: 환급 요청됨
+          exchanged: 환급됨
