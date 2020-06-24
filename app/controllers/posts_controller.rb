@@ -25,7 +25,8 @@ class PostsController < ApiController
   end
 
   def create
-    @post = Post.create(post_params)
+    params = post_params
+    @post = Post.create(params) unless Post.find_by(filter_id: params.dig(:filter_id)).present?
     render json: @post, scope: { params: nil, current_user: @current_user }
   end
 
