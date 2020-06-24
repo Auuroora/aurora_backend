@@ -26,8 +26,12 @@ class PostsController < ApiController
 
   def create
     params = post_params
-    @post = Post.create(params) unless Post.find_by(filter_id: params.dig(:filter_id)).present?
-    render json: @post, scope: { params: nil, current_user: @current_user }
+    if Post.find_by(filter_id: params.dig(:filter_id)).present?
+     render json: { message: '중복 생성이 불가합니다.' }, status: :unprocessable_entity
+    else
+      @post = Post.create(params)
+      render json: @post, scope: { params: nil, current_user: @current_user }
+    end
   end
 
   def update
