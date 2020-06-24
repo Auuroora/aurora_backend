@@ -11,7 +11,9 @@ class PostsController < ApiController
     end
     # 태그 검색
     if params[:tag_cont]
-      @posts = @posts.tagged_with(params[:tag_cont])
+      search_val = "#"
+      search_val.concat(params[:tag_cont]) rescue ''
+      @posts = @posts.tagged_with(search_val)
     end
 
     @posts = @posts.page(params[:page]).order(created_at: :desc).per(10)
