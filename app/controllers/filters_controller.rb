@@ -21,7 +21,10 @@ class FiltersController < ApiController
   end
 
   def destroy
-    @filter.destroy
+    ActiveRecord::Base.transaction do
+      @filter.posts.destroy_all
+      @filter.destroy
+    end
   end
 
   private
