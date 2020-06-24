@@ -10,7 +10,7 @@
 PREFIX = ['굉장히', '아주', '너무나', '매우']
 CONTENT = ['아름다운', '멋진', '예쁜', '신비로운', '감성적인', '따뜻한', '감미로운', '산뜻한']
 PRICES = [1000, 2000, 3000, 4000, 5000]
-TAGS = ["산뜻한", "멋진", "아름다운", "감미로운", "놀라운", "필터", "이쁜", "예쁜"]
+TAGS = ["#산뜻한", "#멋진", "#아름다운", "#감미로운", "#놀라운", "#필터", "#이쁜", "#예쁜"]
 DESCRIPTION = '대한민국의 국민이 되는 요건은 법률로 정한다. 국무회의는 정부의 권한에 속하는 중요한 정책을 심의한다. 이 헌법은 1988년 2월 25일부터 시행한다. 다만, 이 헌법을 시행하기 위하여 필요한 법률의 제정·개정과 이 헌법에 의한 대통령 및 국회의원의 선거 기타 이 헌법시행에 관한 준비는 이 헌법시행 전에 할 수 있다.
 중앙선거관리위원회는 대통령이 임명하는 3인, 국회에서 선출하는 3인과 대법원장이 지명하는 3인의 위원으로 구성한다. 위원장은 위원중에서 호선한다.
 '
@@ -38,8 +38,8 @@ FILTER_NAME = [
 
 def generate_post
   Filter.all.each do |filter|
-    post = Post.create(title: "#{PREFIX.sample} #{CONTENT.sample} #{"필터"}", description: Faker::Lorem.sentence(word_count: 200), user_id: rand(2..7), filter_id: filter.id, price: "#{PRICES.sample}", likers_count: rand(2000), tag_list: TAGS)
-    rand(100).times do
+    post = Post.create(title: "#{PREFIX.sample} #{CONTENT.sample} #{"필터"}", description: Faker::Lorem.sentence(word_count: 200), user_id: rand(2..7), filter_id: filter.id, price: "#{PRICES.sample}", likers_count: rand(90), tag_list: TAGS)
+    rand(10).times do
       Comment.create(body: "#{CONTENT.sample} 필터이군요!", user_id: User.first.id, commentable_type: "Post", commentable_id: post.id)
       puts "Comment 생성"
     end
