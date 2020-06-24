@@ -26,5 +26,10 @@ class HomeController < ApiController
 
     render json: like_posts, scope: { params: create_params, current_user: @current_user }
   end
-  
+
+  def best_post
+    best_likes_post = Post.all.order("likers_count DESC").limit(10)
+    render json: best_likes_post, scope: { params: create_params, current_user: @current_user }
+  end
+
 end
