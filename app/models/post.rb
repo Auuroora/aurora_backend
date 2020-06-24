@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  acts_as_paranoid
+  # acts_as_paranoid
   include Commentable
 
   belongs_to :user

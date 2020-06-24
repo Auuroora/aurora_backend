@@ -1,5 +1,5 @@
 class Filter < ApplicationRecord
-  acts_as_paranoid
+  # acts_as_paranoid
   include ActiveModel::Serialization
 
   belongs_to :user
