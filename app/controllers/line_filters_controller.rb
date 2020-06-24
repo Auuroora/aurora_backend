@@ -11,8 +11,8 @@ class LineFiltersController < ApiController
   def create
     filter_id = line_filters_params.dig(:line_filter, :filter_id)
     current_line_filters = @order.line_filters
-    purchase_line_filters = @current_user.orders&.purchased&.line_filters
-    unless current_line_filters.find_by(filter_id: filter_id).present? && purchase_line_filters.find_by(filter_id: filter_id)
+    purchase_line_filters = @current_user.orders.purchased.first&.line_filters
+    unless current_line_filters&.find_by(filter_id: filter_id).present? || purchase_line_filters&.find_by(filter_id: filter_id)
       line_filter = @order.line_filters.create(line_filters_params)
     end
     @order.update_total
