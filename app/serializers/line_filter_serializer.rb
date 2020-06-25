@@ -12,7 +12,7 @@ class LineFilterSerializer < ActiveModel::Serializer
 
   def post_info
     post = object.post
-    if post.id.present?
+    if post.present?
       { post_id: post.id, post_title: post.title }
     else
       { post_id: '-', post_title: '제작자로 인해 삭제된 상품'}

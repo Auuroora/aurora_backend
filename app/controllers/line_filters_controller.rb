@@ -13,7 +13,6 @@ class LineFiltersController < ApiController
     filter_id = params.dig(:filter_id)
 
     flag = 1
-    puts flag
     if @order.line_filters&.find_by(filter_id: filter_id).present?
       flag = 0
       msg = "이미 장바구니에 담은 상품입니다"
