@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   belongs_to :filter
 
   has_many :reports, as: :reportable
-  has_many :line_filters, dependent: :destroy
+  has_many :line_filters, dependent: :nullify
 
   acts_as_taggable_on :tags
   acts_as_likeable

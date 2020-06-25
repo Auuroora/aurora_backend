@@ -17,13 +17,11 @@ class LineFiltersController < ApiController
     if @order.line_filters&.find_by(filter_id: filter_id).present?
       flag = 0
       msg = "이미 장바구니에 담은 상품입니다"
-      puts msg
     end
     @current_user.orders.purchased.each do |order|
       if order.line_filters.find_by(filter_id: filter_id).present?
         flog=0
         msg = "이미 구매하신 상품입니다"
-        puts msg
       end
     end
 
@@ -32,7 +30,7 @@ class LineFiltersController < ApiController
       @order.update_total
       render json: line_filter
     else
-       render json: { message: msg }
+       render json: { message: msg }, status: :unprocessable_entity
     end
   end
 
