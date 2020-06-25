@@ -4,6 +4,10 @@ ActiveAdmin.register Comment do
   index do
     selectable_column
     id_column
+    a link_to ("10 개씩 보기"), "/admin/comments?comment=id_desc&per_page=10", class: "button small"
+    a link_to ("20 개씩 보기"), "/admin/comments?comment=id_desc&per_page=20", class: "button small"
+    a link_to ("30 개씩 보기"), "/admin/comments?comment=id_desc&per_page=30", class: "button small"
+    a link_to ("모두 보기"), "/admin/comments?commento=id_desc&per_page=#{Comment.count}", class: "button small"
     br
     column :body
     column :user

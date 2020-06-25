@@ -14,8 +14,8 @@ ActiveAdmin.register Report do
     selectable_column
     id_column
     a link_to ("10 개씩 보기"), "/admin/reports?order=id_desc&per_page=10", class: "button small"
+    a link_to ("20 개씩 보기"), "/admin/reports?order=id_desc&per_page=20", class: "button small"
     a link_to ("30 개씩 보기"), "/admin/reports?order=id_desc&per_page=30", class: "button small"
-    a link_to ("50 개씩 보기"), "/admin/reports?order=id_desc&per_page=50", class: "button small"
     a link_to ("모두 보기"), "/admin/reports?order=id_desc&per_page=#{Report.count}", class: "button small"
     br
     column :reportable_type do |report|
