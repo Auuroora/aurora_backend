@@ -20,7 +20,7 @@ class LineFiltersController < ApiController
     end
     @current_user.orders.purchased.each do |order|
       if order.line_filters.find_by(filter_id: filter_id).present?
-        flog=0
+        flag=0
         msg = "이미 구매하신 상품입니다"
       end
     end
