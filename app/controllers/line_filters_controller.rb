@@ -9,14 +9,30 @@ class LineFiltersController < ApiController
   end
 
   def create
-    filter_id = line_filters_params.dig(:line_filter, :filter_id)
-    current_line_filters = @order.line_filters
-    purchase_line_filters = @current_user.orders.purchased.first&.line_filters
-    unless current_line_filters&.find_by(filter_id: filter_id).present? || purchase_line_filters&.find_by(filter_id: filter_id)
-      line_filter = @order.line_filters.create(line_filters_params)
+    params = line_filters_params
+    filter_id = params.dig(:filter_id)
+
+    flag = 1
+    if @order.line_filters&.find_by(filter_id: filter_id).present?
+      flag = 0
+      msg = "이미 장바구니에 담은 상품입니다"
+      puts msg
     end
-    @order.update_total
-    render json: line_filter
+    @current_user.orders.purchased.each do |order|
+      if order.line_filters.find_by(filter_id: filter_id).prsent?
+        flog=0
+        msg = "이미 구매하신 상품입니다"
+        puts msg
+      end
+    end
+
+    if flag == 1
+      line_filter = @order.line_filters.create(params)
+      @order.update_total
+      render json: line_filter
+    else
+       render json: { message: msg }
+    end
   end
 
   def update
@@ -33,6 +49,10 @@ class LineFiltersController < ApiController
   end
 
   private
+
+  def check_line_filter_validation filter_id
+    @order
+  end
 
   def load_cart_order
     @order = @current_user.orders.cart.first_or_create
