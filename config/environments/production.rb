@@ -87,7 +87,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'http://aurora-application.ap-northeast-2.elasticbeanstalk.com' }
   config.action_mailer.delivery_method = :sendgrid_actionmailer
     config.action_mailer.sendgrid_actionmailer_settings = {
-    api_key: ENV['SENDGRID_API_KEY']
+    api_key: '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'
   }
 
   # Inserts middleware to perform automatic connection switching.
