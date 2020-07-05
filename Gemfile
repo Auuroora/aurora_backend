@@ -75,6 +75,15 @@ gem 'ransack'
 # Faker
 gem 'faker'
 
+group :test do
+  gem 'rspec-rails', '~> 4.0.0'
+  gem 'shoulda-matchers', '~> 3.0', require: false
+  gem 'database_cleaner', '~> 1.5'
+  gem 'capybara', '~> 2.5'
+  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'simplecov', require: false
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

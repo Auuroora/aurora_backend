@@ -21,7 +21,7 @@ class PostsController < ApiController
   end
 
   def show
-    render json: @post, scope: { params: create_params, current_user: @current_user }
+    render json: @post, scope: { params: create_params, current_user: @current_user }, status: :success
   end
 
   def create

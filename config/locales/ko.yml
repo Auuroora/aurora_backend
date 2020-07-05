@@ -192,6 +192,8 @@ ko:
       errors:
         empty_text: "댓글이 저장되지 않았습니다. 내용을 입력해주세요."
     devise:
+      failure:
+        not_found_in_database: "Invalid %{authentication_keys} or password."
       username:
         title: "아이디"
       email:

@@ -3,7 +3,7 @@ class UsersController < ApiController
   before_action :load_user, except: %i(index create)
 
   def index
-    render json: User.all, status: :ok
+    render json: User.all, status: :success
   end
 
   def show
@@ -32,7 +32,7 @@ class UsersController < ApiController
   def load_user
     @user = User.find_by(id: params[:id])
     rescue ActiveRecord::RecordNotFound
-      render json: { errors: 'User not found' }, status: :not_found
+      render json: { errors: 'User not found' }, status: :unprocessable_entity
   end
 
   def user_params
